@@ -189,11 +189,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-ghost-cant-find-gho-file" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Qing-song-scrum-zhi-lv-Chapter-2-reading-notes" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2008/02/02/ghost-cant-find-gho-file/" class="article-date">
-  	<time datetime="2008-02-02T06:31:02.000Z" itemprop="datePublished">2008-02-02</time>
+      <a href="/2012/04/15/Qing-song-scrum-zhi-lv-Chapter-2-reading-notes/" class="article-date">
+  	<time datetime="2012-04-15T09:18:27.000Z" itemprop="datePublished">2012-04-15</time>
 </a>
     </div>
   
@@ -206,7 +206,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2008/02/02/ghost-cant-find-gho-file/">Ghost备份后找不到GHO镜像文件</a>
+      <a class="article-title" href="/2012/04/15/Qing-song-scrum-zhi-lv-Chapter-2-reading-notes/">《轻松scrum之旅——敏捷开发故事》读书笔记：第2章 回首往事</a>
     </h1>
   
 
@@ -215,25 +215,85 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Ghost备份后找不到gho镜像文件，但是硬盘空间却无故减少。</p>
-<p>这个问题困扰过我很长一段时间，不知道解决方法，只知道有时把镜像备份到NTFS格式的硬盘上会出现这个问题。</p>
-<p>终于，在网上找到了相关资料：</p>
-<p>用GHOST备份成功后，没有按QUIT就直接ctrl+alt+del退出GHOST，结果重启后完后却找不到GHO。</p>
-<p>问题出现的根本原因：<strong>GHOST在NTFS存在兼容问题</strong>。</p>
+        <ol>
+<li>矩阵式的管理模式：<br> 在需求、设计、开发、测试部门的内部根据独立的模块划分成多个虚拟的项目组，这样就把模块内的需求、设计、开发、测试人员紧密结合起来，可以说是最大化地降低了人员之间的内耗，从而调动起整个项目组的积极性。</li>
+</ol>
+
       
     </div>
     
     <div class="article-info article-info-index">
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ghost/">Ghost</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/《轻松scrum之旅——敏捷开发故事》/">《轻松scrum之旅——敏捷开发故事》</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-Professional-JavaScript-for-Web-Developers-Chapter-3-2-reading-notes" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2012/04/08/Professional-JavaScript-for-Web-Developers-Chapter-3-2-reading-notes/" class="article-date">
+  	<time datetime="2012-04-08T15:47:45.000Z" itemprop="datePublished">2012-04-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/04/08/Professional-JavaScript-for-Web-Developers-Chapter-3-2-reading-notes/">《JavaScript高级程序设计》第3章 基本概念(2)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>对于有符号的整数，第32位表示数值的符号：0表示正数，1表示负数。该位叫做符号位。<br>对于无符号的整数，第32位不再表示符号，可以用来表示数值。</p>
+</li>
+<li><p>负数以二进制补码存储。计算补码的步骤为：<br>1）求这个数值绝对值的二进制码<br>2）求二进制反码，即将0替换为1，将1替换为0<br>3）得到的二进制反码加1</p>
+</li>
+<li><p>在以二进制字符串形式输出一个负数时，只会看到这个负数绝对值的二进制码前面加上了负号。如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num1 = <span class="number">18</span>;</span><br><span class="line">alert(num1.toString(<span class="number">2</span>));     <span class="comment">// "10010"</span></span><br><span class="line"><span class="keyword">var</span> num2 = -<span class="number">18</span>;</span><br><span class="line">alert(num2.toString(<span class="number">2</span>));     <span class="comment">// "-10010"</span></span><br></pre></td></tr></table></figure>
+<p>说明转换过程理解了二进制补码并将其以更合乎逻辑的形式展示了出来。</p>
+</li>
+<li><p>对数值应用位操作符时，后台的转换过程如下：<br>64位的数值被转换成32位数值，然后执行位操作，最后再将32位的结果转换回64位数值。<br>这个过程导致的副效应：在对特殊的<code>NaN</code>和<code>Infinity</code>值应用位操作时，这两个值都会被当做0来处理。<br>对非数值应用位操作符，会先使用<code>Number()</code>函数将该值转换为一个数值，然后应用位操作。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/《JavaScript高级程序设计》/">《JavaScript高级程序设计》</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
 	</div>
 
       
 
       
         <p class="article-more-link">
-          <a  href="/2008/02/02/ghost-cant-find-gho-file/#more">more >></a>
+          <a  href="/2012/04/08/Professional-JavaScript-for-Web-Developers-Chapter-3-2-reading-notes/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -249,11 +309,11 @@
 
 
   
-    <article id="post-mssql-install-error" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Professional-JavaScript-for-Web-Developers-Chapter-3-1-reading-notes" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2007/08/13/mssql-install-error/" class="article-date">
-  	<time datetime="2007-08-13T06:21:33.000Z" itemprop="datePublished">2007-08-13</time>
+      <a href="/2012/04/08/Professional-JavaScript-for-Web-Developers-Chapter-3-1-reading-notes/" class="article-date">
+  	<time datetime="2012-04-08T15:42:01.000Z" itemprop="datePublished">2012-04-08</time>
 </a>
     </div>
   
@@ -266,7 +326,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2007/08/13/mssql-install-error/">SQL Server 2000安装时报错及解决</a>
+      <a class="article-title" href="/2012/04/08/Professional-JavaScript-for-Web-Developers-Chapter-3-1-reading-notes/">《JavaScript高级程序设计》第3章 基本概念(1)</a>
     </h1>
   
 
@@ -275,25 +335,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>安装SQL Server 2000时报了如下的错误：</p>
-<blockquote>
-<p>以前的某个程序安装已在安装计算机上创建挂起的文件操作。运行安装之前，必须重新启动计算机</p>
-</blockquote>
-<p>解决方案如下：</p>
+        <ol>
+<li><p>ECMAScript的发音是：<code>ek-ma-script</code>。</p>
+</li>
+<li><p>ECMAScript中的一切都区分大小写。</p>
+</li>
+<li><p>标识符的命名规则：<br> 第一个字符必须是一个字母、下划线或美元符号；<br> 其他字符可以是字母、下划线、美元符号或数字。<br> 标识符中的字母也可以包含扩展的ASCII或Unicode字母字符，但不推荐。<br> 书写格式建议采用驼峰大小写格式。主要是为了与内置的函数和对象命名格式保持一致。</p>
+</li>
+<li><p>语句以分号结尾，也可以省略分号。但是加上分号可以避免很多错误，也可以放心地进行代码压缩。<br> 另外加上分号也会在某些情况下增进代码的性能，因为这样解析器就不必再花时间推测应该在哪里插入分号了。</p>
       
     </div>
     
     <div class="article-info article-info-index">
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL-Server/">SQL Server</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/《JavaScript高级程序设计》/">《JavaScript高级程序设计》</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
 	</div>
 
       
 
       
         <p class="article-more-link">
-          <a  href="/2007/08/13/mssql-install-error/#more">more >></a>
+          <a  href="/2012/04/08/Professional-JavaScript-for-Web-Developers-Chapter-3-1-reading-notes/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -309,11 +372,11 @@
 
 
   
-    <article id="post-mssql-error-21002" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Professional-JavaScript-for-Web-Developers-Chapter-2-reading-notes" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2007/08/10/mssql-error-21002/" class="article-date">
-  	<time datetime="2007-08-10T14:56:03.000Z" itemprop="datePublished">2007-08-10</time>
+      <a href="/2012/04/08/Professional-JavaScript-for-Web-Developers-Chapter-2-reading-notes/" class="article-date">
+  	<time datetime="2012-04-08T15:40:03.000Z" itemprop="datePublished">2012-04-08</time>
 </a>
     </div>
   
@@ -326,7 +389,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2007/08/10/mssql-error-21002/">SQL Server“错误21002[SQL-DMO]用户xxx已经存在”之解决方法</a>
+      <a class="article-title" href="/2012/04/08/Professional-JavaScript-for-Web-Developers-Chapter-2-reading-notes/">《JavaScript高级程序设计》第2章 在HTML中使用JavaScript</a>
     </h1>
   
 
@@ -335,23 +398,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>首先尝试删除对应数据库中的用户，若删除不掉，则在数据库的sysusers中删除xxx。</p>
-<p>update: 使登录用户和数据库的孤立用户对应起来。</p>
-<p>其实我们建立了同样名称的数据库登录用户后，数据库中的表我们照样不能使用时因为sid的不同，就是系统登录表和数据库用户表中的用户名相同，单是sid字段，数据库中的还是以前旧系统的sid值，所以我们就要把它对应成我们新建的，数据库靠sid来识别用户。</p>
+        <ol>
+<li><p>HTML 4.01为<code>&lt;script&gt;</code>定义了下列5个属性：</p>
+<ul>
+<li>charset<br>可选。表示通过src属性指定的代码的字符集。由于大多数浏览器会忽略它的值，因此这个属性很少有人用。</li>
+<li>defer<br>可选。表示脚本可以延迟到文档完全被解析和显示之后再执行。</li>
+<li>language<br>已废弃。原来用于表示编写代码使用的脚本语言（如JavaScript、JavaScript1.2或VBScript）。大多数浏览器会忽略这个属性，因此也没有必要再用了。</li>
+<li>src<br>可选。表示包含要执行代码的外部文件。</li>
+<li><p>type<br>必需。可以看成是language的替代属性；表示编写代码使用的脚本语言的内容类型（也称为MIME类型）。虽然<code>text/javascript</code>和<code>text/ecmascript</code>都已经不被推荐使用，但人们一直以来使用的都还是<code>text/javascript</code>。实际上，服务器在传送js文件时使用的MIME类型通常是<code>application/x-javascript</code>，但在type中设置这个值却可能导致脚本被忽略。另外，在非IE浏览器中还可以使用一下值：<code>application/javascript</code>和<code>application/ecmascript</code>。考虑到约定俗成和最大限度的浏览器兼容性，目前type属性的值依旧还是<code>text/javascript</code>。</p>
       
     </div>
     
     <div class="article-info article-info-index">
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL-Server/">SQL Server</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/《JavaScript高级程序设计》/">《JavaScript高级程序设计》</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
 	</div>
 
       
 
       
         <p class="article-more-link">
-          <a  href="/2007/08/10/mssql-error-21002/#more">more >></a>
+          <a  href="/2012/04/08/Professional-JavaScript-for-Web-Developers-Chapter-2-reading-notes/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -367,11 +435,11 @@
 
 
   
-    <article id="post-life-is-a-continuous-process" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Professional-JavaScript-for-Web-Developers-Chapter-1-reading-notes" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2007/04/28/life-is-a-continuous-process/" class="article-date">
-  	<time datetime="2007-04-28T14:58:31.000Z" itemprop="datePublished">2007-04-28</time>
+      <a href="/2012/04/08/Professional-JavaScript-for-Web-Developers-Chapter-1-reading-notes/" class="article-date">
+  	<time datetime="2012-04-08T15:37:46.000Z" itemprop="datePublished">2012-04-08</time>
 </a>
     </div>
   
@@ -384,7 +452,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2007/04/28/life-is-a-continuous-process/">生命是一种长期而持续的累积过程</a>
+      <a class="article-title" href="/2012/04/08/Professional-JavaScript-for-Web-Developers-Chapter-1-reading-notes/">《JavaScript高级程序设计》第1章 JavaScript简介</a>
     </h1>
   
 
@@ -393,7 +461,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&nbsp;&emsp;&emsp;生命是一种长期而持续的累积过程，绝不会因为单一的事件而毁了一个人的一生，也 不会因为单一的事件而救了一个人的一生。属于我们该得的，迟早会得到；属于我们不该得的，即使侥幸巧取也不可能长久保有。如果我们看清这个事实，许多所谓 人生的重大抉择就可以淡然处之，根本无需焦虑。而所谓人生的困境，也往往当下就变得无足挂齿。</p>
+        <p>JavaScipt是一种专为与网页交互而设计的脚本语言，由下列三个不同的部分组成：</p>
+<ol>
+<li>ECMAScript，由ECMA-262定义，提供核心语言功能；</li>
+<li>文档对象模型（DOM），提供访问和操作网页内容的方法和接口；</li>
+<li>浏览器对象模型（BOM），提供与浏览器交互的方法和接口。</li>
+</ol>
 
       
     </div>
@@ -401,60 +474,7 @@
     <div class="article-info article-info-index">
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/来自网络/">来自网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-about-friend" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2005/06/16/about-friend/" class="article-date">
-  	<time datetime="2005-06-16T14:40:00.000Z" itemprop="datePublished">2005-06-16</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2005/06/16/about-friend/">有一种朋友</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&nbsp;&emsp;&emsp;有一种朋友，跟他在一起的时候，心里完全没有负担。不需要刻意的讨好他，无论何时都觉得很自在。不在一起的时候，你知道他没有忘了你，他关心着你。 他不见得天天与你见面或通电话，但你知道你们的友谊不会有什么改变。为什么呢，因为只要你有了为难的事，他永远在那儿。在一个令你放心的位置、不变的位 置，等着你。甚至不需要开口，他已经嗅到了某些端倪，主动把温暖的手伸过来。他用一颗诚心与你交往。能结为朋友，你便拥有一项珍贵的宝物。不管是分离的云 谈风轻也好，相聚时的风云际会也罢，拥有这样的朋友，你会感到很温暖。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/来自网络/">来自网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/《JavaScript高级程序设计》/">《JavaScript高级程序设计》</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
 	</div>
 
       
@@ -475,7 +495,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 </div>

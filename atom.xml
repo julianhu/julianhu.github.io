@@ -4,7 +4,7 @@
   <subtitle><![CDATA[不负此生，不负己心]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://chunhui.hu/"/>
-  <updated>2015-05-02T10:12:58.000Z</updated>
+  <updated>2015-05-02T10:22:32.000Z</updated>
   <id>http://chunhui.hu/</id>
   
   <author>
@@ -19,9 +19,10 @@
     <link href="http://chunhui.hu/2013/12/07/Change-VIM-to-your-IDE/"/>
     <id>http://chunhui.hu/2013/12/07/Change-VIM-to-your-IDE/</id>
     <published>2013-12-07T03:40:14.000Z</published>
-    <updated>2015-05-02T10:12:58.000Z</updated>
+    <updated>2015-05-02T10:22:32.000Z</updated>
     <content type="html"><![CDATA[<ol>
 <li><p>写在前面<br> 一般来说，一个完整的IDE至少需要具备以下几个特征：代码加亮、函数定位、文件浏览、导航器、代码补全。所以，VIM本身来说并不是一个合格的IDE，但是对于喜欢它的人，可以通过它强大的插件系统来实现以上全部功能。<br> 另外，VIM作为IDE更有以下这些优势：<br> 1）脱离鼠标，提高效率<br> 2）插件丰富，超强DIY<br> 3）简单轻量，一个vimrc走天下<br> 4）跨平台（Linux/Win/Mac）：VIM，gVIM，MacVIM<br> 5）可以直接在linux开发机上开发<br> 在介绍如何打造IDE之前，首先请先检查系统自带的VIM的版本，请勿&lt;7.0，尽量安装最新版。</p>
+ <a id="more"></a>
 </li>
 <li><p>Ctags<br> 2.1. 简介<br> Ctags是一个用于从程序源代码树产生索引文件（或tag文件)，从而便于文本编辑器来实现快速定位的实用工具。<br> 2.2. 官网<br> <a href="http://ctags.sourceforge.net/" target="_blank" rel="external">http://ctags.sourceforge.net/</a><br> 2.3. 安装<br> 注：请下载5.6之后的版本</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://prdownloads.sourceforge.net/ctags/ctags-<span class="number">5.8</span>.tar.gz</span><br><span class="line">tar -xzvf ctags-<span class="number">5.8</span>.tar.gz</span><br><span class="line"><span class="built_in">cd</span> ctags-<span class="number">5.8</span></span><br><span class="line">.configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
@@ -30,7 +31,6 @@
 <p> 注：如果做了代码修改，比如函数的定义变更、删除，需要重新建立索引。<br> 2.5. 使用<br> 1）在vim中运行命令：</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="built_in">set</span> tags=/home/your_code_path/tags</span><br></pre></td></tr></table></figure>
 <p> 2）跳转<br> <code>Ctrl + ]</code>：跳转到函数定义处<br> <code>Ctrl + t</code>：跳回上一处</p>
- <a id="more"></a>
 </li>
 <li><p>Cscope<br> 3.1. 简介<br> “Ctags的超频版”，不仅支持变量/函数的定义查询，还记录了函数的调用处查询等功能。<br> 3.2. 官网<br> <a href="http://cscope.sourceforge.net/" target="_blank" rel="external">http://cscope.sourceforge.net/</a><br> 3.3. 安装<br> 1）检查系统中是否有cscope命令，如果没有则如下安装：</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
@@ -79,15 +79,7 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<ol>
-<li><p>写在前面<br> 一般来说，一个完整的IDE至少需要具备以下几个特征：代码加亮、函数定位、文件浏览、导航器、代码补全。所以，VIM本身来说并不是一个合格的IDE，但是对于喜欢它的人，可以通过它强大的插件系统来实现以上全部功能。<br> 另外，VIM作为IDE更有以下这些优势：<br> 1）脱离鼠标，提高效率<br> 2）插件丰富，超强DIY<br> 3）简单轻量，一个vimrc走天下<br> 4）跨平台（Linux/Win/Mac）：VIM，gVIM，MacVIM<br> 5）可以直接在linux开发机上开发<br> 在介绍如何打造IDE之前，首先请先检查系统自带的VIM的版本，请勿&lt;7.0，尽量安装最新版。</p>
-</li>
-<li><p>Ctags<br> 2.1. 简介<br> Ctags是一个用于从程序源代码树产生索引文件（或tag文件)，从而便于文本编辑器来实现快速定位的实用工具。<br> 2.2. 官网<br> <a href="http://ctags.sourceforge.net/">http://ctags.sourceforge.net/</a><br> 2.3. 安装<br> 注：请下载5.6之后的版本</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://prdownloads.sourceforge.net/ctags/ctags-<span class="number">5.8</span>.tar.gz</span><br><span class="line">tar -xzvf ctags-<span class="number">5.8</span>.tar.gz</span><br><span class="line"><span class="built_in">cd</span> ctags-<span class="number">5.8</span></span><br><span class="line">.configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-<p> 2.4. 索引</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/your_code_path</span><br><span class="line">ctags -R （要支持JS请参考附录）</span><br></pre></td></tr></table></figure>
-<p> 注：如果做了代码修改，比如函数的定义变更、删除，需要重新建立索引。<br> 2.5. 使用<br> 1）在vim中运行命令：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="built_in">set</span> tags=/home/your_code_path/tags</span><br></pre></td></tr></table></figure>
-<p> 2）跳转<br> <code>Ctrl + ]</code>：跳转到函数定义处<br> <code>Ctrl + t</code>：跳回上一处</p>]]>
+<li><p>写在前面<br> 一般来说，一个完整的IDE至少需要具备以下几个特征：代码加亮、函数定位、文件浏览、导航器、代码补全。所以，VIM本身来说并不是一个合格的IDE，但是对于喜欢它的人，可以通过它强大的插件系统来实现以上全部功能。<br> 另外，VIM作为IDE更有以下这些优势：<br> 1）脱离鼠标，提高效率<br> 2）插件丰富，超强DIY<br> 3）简单轻量，一个vimrc走天下<br> 4）跨平台（Linux/Win/Mac）：VIM，gVIM，MacVIM<br> 5）可以直接在linux开发机上开发<br> 在介绍如何打造IDE之前，首先请先检查系统自带的VIM的版本，请勿&lt;7.0，尽量安装最新版。</p>]]>
     
     </summary>
     
@@ -578,7 +570,7 @@
     <link href="http://chunhui.hu/2012/04/15/Qing-song-scrum-zhi-lv-Chapter-4-reading-notes/"/>
     <id>http://chunhui.hu/2012/04/15/Qing-song-scrum-zhi-lv-Chapter-4-reading-notes/</id>
     <published>2012-04-15T09:21:08.000Z</published>
-    <updated>2015-05-02T09:00:51.000Z</updated>
+    <updated>2015-05-02T10:23:47.000Z</updated>
     <content type="html"><![CDATA[<ol>
 <li><p>如果真的遇到一个特别大的Story，应该适当地将Story分解。</p>
 </li>
@@ -587,6 +579,7 @@
 <li><p>当我们进入一个新的领域或者开始一些从未涉及过的工作时，感觉无从下手是很正常的。好的处理方式是打一颗照明弹，尽可能地往远处打，说不定就能发现我们正在走的路是否能通往我们的目标。同时，对于路上的困难，也会有一个感性的认识。<br> 敏捷开发的价值观认为计划是不可能精确估计的。这也是习惯了传统流程的人再转到敏捷开发时会不太适应的地方。但是制定一个粗略的计划反而更符合实际，它可以帮助我们把重点放在更有价值的事情上。</p>
 </li>
 <li><p>在混乱中建立秩序是Sprint开始阶段的目标。</p>
+ <a id="more"></a>
 </li>
 <li><p>买土豆的故事<br> 故事里的成功 者居然只是通过老板的一句话,就替老板假设了那么多的情况,而且所有的假设都 没有得到老板的反馈意见,就直接替老板决定了,这岂不是很危险的事?但是你可 能会说,总不能每次遇到需要抉择的时候都去找老板请示吧。是的,我们当然不能 这样。所以呢,我们要在事情没做之前,从老板那里收集到尽量多的信息,例如买 土豆是要做什么啊、要买多少啊。这样我们才能够迈出坚实的第一步。</p>
 </li>
@@ -639,7 +632,12 @@
     <![CDATA[<ol>
 <li><p>如果真的遇到一个特别大的Story，应该适当地将Story分解。</p>
 </li>
-<li><p>Sprint计划（Sprint Planning）<br> 在每个 Sprint 开始之前,需要召开 Sprint 计划会议,会议时间一般为 4~8 小时,]]>
+<li><p>Sprint计划（Sprint Planning）<br> 在每个 Sprint 开始之前,需要召开 Sprint 计划会议,会议时间一般为 4~8 小时, 参加人员有产品责任人、Scrum Master、Scrum 团队和其他感兴趣的人,比如管理层 人员和客户代表。Product Owner 从产品 Backlog 中挑选高优先级的任务,并与 Scrum 团队一起决定在这个 Sprint 中需要完成多少功能。Scrum 团队将这些任务分解成小的功 能模块。Scrum 团队成员详细讨论如何能按需求完成这些功能模块,并估计完成每个功 能模块所需的大概时间。</p>
+</li>
+<li><p>当我们进入一个新的领域或者开始一些从未涉及过的工作时，感觉无从下手是很正常的。好的处理方式是打一颗照明弹，尽可能地往远处打，说不定就能发现我们正在走的路是否能通往我们的目标。同时，对于路上的困难，也会有一个感性的认识。<br> 敏捷开发的价值观认为计划是不可能精确估计的。这也是习惯了传统流程的人再转到敏捷开发时会不太适应的地方。但是制定一个粗略的计划反而更符合实际，它可以帮助我们把重点放在更有价值的事情上。</p>
+</li>
+<li><p>在混乱中建立秩序是Sprint开始阶段的目标。</p>]]>
+    
     </summary>
     
       <category term="《轻松scrum之旅——敏捷开发故事》" scheme="http://chunhui.hu/tags/%E3%80%8A%E8%BD%BB%E6%9D%BEscrum%E4%B9%8B%E6%97%85%E2%80%94%E2%80%94%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91%E6%95%85%E4%BA%8B%E3%80%8B/"/>
