@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Windows下的VMware给Linux虚拟机硬盘扩容 | 隐湖小筑 - Julian&#39;s home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="我们在使用虚拟机时，随着时间的增加，经常会遇到原来分配的空间不够用的情况，此时需要对原有硬盘空间做扩容或增加一块新的硬盘。
+一、扩大硬盘空间（以下两种任选一）1. 扩大原来的硬盘首先关闭虚拟机，进入VMware的安装目录，其中有一个文件vmware-vdiskmanager.exe，在windows命令控制台运行以下命令：
+1vmware-vdiskmanager.exe -x 15Gb “D:\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows下的VMware给Linux虚拟机硬盘扩容">
+<meta property="og:url" content="http://chunhui.hu/2010/06/28/extend-linux-disk-on-vmware/index.html">
+<meta property="og:site_name" content="隐湖小筑 - Julian's home">
+<meta property="og:description" content="我们在使用虚拟机时，随着时间的增加，经常会遇到原来分配的空间不够用的情况，此时需要对原有硬盘空间做扩容或增加一块新的硬盘。
+一、扩大硬盘空间（以下两种任选一）1. 扩大原来的硬盘首先关闭虚拟机，进入VMware的安装目录，其中有一个文件vmware-vdiskmanager.exe，在windows命令控制台运行以下命令：
+1vmware-vdiskmanager.exe -x 15Gb “D:\">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows下的VMware给Linux虚拟机硬盘扩容">
+<meta name="twitter:description" content="我们在使用虚拟机时，随着时间的增加，经常会遇到原来分配的空间不够用的情况，此时需要对原有硬盘空间做扩容或增加一块新的硬盘。
+一、扩大硬盘空间（以下两种任选一）1. 扩大原来的硬盘首先关闭虚拟机，进入VMware的安装目录，其中有一个文件vmware-vdiskmanager.exe，在windows命令控制台运行以下命令：
+1vmware-vdiskmanager.exe -x 15Gb “D:\">
+  
+    <link rel="alternative" href="/atom.xml" title="隐湖小筑 - Julian&#39;s home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="http://7sbyks.com1.z0.glb.clouddn.com/head_001.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Julian Hu</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">不负此生，不负己心</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/springshine" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/chunhuihu" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CentOS/" style="font-size: 12.5px;">CentOS</a><a href="/tags/Ghost/" style="font-size: 10px;">Ghost</a><a href="/tags/IDE/" style="font-size: 10px;">IDE</a><a href="/tags/Linux/" style="font-size: 15px;">Linux</a><a href="/tags/Mercurial/" style="font-size: 10px;">Mercurial</a><a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a><a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a><a href="/tags/PHP/" style="font-size: 10px;">PHP</a><a href="/tags/SQL-Server/" style="font-size: 12.5px;">SQL Server</a><a href="/tags/VIM/" style="font-size: 10px;">VIM</a><a href="/tags/VMware/" style="font-size: 10px;">VMware</a><a href="/tags/VPN/" style="font-size: 10px;">VPN</a><a href="/tags/VPS/" style="font-size: 10px;">VPS</a><a href="/tags/Xen/" style="font-size: 12.5px;">Xen</a><a href="/tags/css/" style="font-size: 10px;">css</a><a href="/tags/disk/" style="font-size: 10px;">disk</a><a href="/tags/pptpd/" style="font-size: 10px;">pptpd</a><a href="/tags/webkit/" style="font-size: 10px;">webkit</a><a href="/tags/《JavaScript高级程序设计》/" style="font-size: 15px;">《JavaScript高级程序设计》</a><a href="/tags/《轻松scrum之旅——敏捷开发故事》/" style="font-size: 17.5px;">《轻松scrum之旅——敏捷开发故事》</a><a href="/tags/来自网络/" style="font-size: 12.5px;">来自网络</a><a href="/tags/版本控制/" style="font-size: 10px;">版本控制</a><a href="/tags/读书笔记/" style="font-size: 20px;">读书笔记</a><a href="/tags/随笔/" style="font-size: 12.5px;">随笔</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.sk80.com/">超子</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://dbanotes.net/">冯大辉</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.ruanyifeng.com/">阮一峰</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">水瓶座大叔一枚，上升星座处女座。从业IT十余年，仍童心未泯，幸矣。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Julian Hu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7sbyks.com1.z0.glb.clouddn.com/head_001.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Julian Hu</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">不负此生，不负己心</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/springshine" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/chunhuihu" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-extend-linux-disk-on-vmware" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2010/06/28/extend-linux-disk-on-vmware/" class="article-date">
+  	<time datetime="2010-06-28T04:10:25.000Z" itemprop="datePublished">2010-06-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Windows下的VMware给Linux虚拟机硬盘扩容
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VMware/">VMware</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/disk/">disk</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们在使用虚拟机时，随着时间的增加，经常会遇到原来分配的空间不够用的情况，此时需要对原有硬盘空间做扩容或增加一块新的硬盘。</p>
+<h4 id="一、扩大硬盘空间（以下两种任选一）">一、扩大硬盘空间（以下两种任选一）</h4><h5 id="1-_扩大原来的硬盘">1. 扩大原来的硬盘</h5><p>首先关闭虚拟机，进入VMware的安装目录，其中有一个文件vmware-vdiskmanager.exe，在windows命令控制台运行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vmware-vdiskmanager.exe -x <span class="number">15</span>Gb “D:\VM\CentOS\CentOS <span class="number">5</span>.vmdk”</span><br></pre></td></tr></table></figure>
+<p>其中的容量和vmdk文件路径请改为你的实际值，vmdk路径如果有空格的话请用双引号引起来。</p>
+<h5 id="2-_增加新硬盘">2. 增加新硬盘</h5><p>打开VMware，点击菜单栏中的“虚拟机”——&gt;“设置”，选择Hard Disk，点击“添加”，然后按照提示一路next。</p>
+<a id="more"></a>
+<h4 id="二、对硬盘分区">二、对硬盘分区</h4><p>运行虚拟机，进入shell界面，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk <span class="operator">-l</span></span><br></pre></td></tr></table></figure>
+<p>查看分区信息。</p>
+<p>如果是对原有新盘扩充，则会看到硬盘空间已经增大了；如果是新加了硬盘，则会看到新的硬盘信息，例如以前的硬盘为<code>/dev/sda</code>，则新硬盘为<code>/dev/sdb</code>。这两种情况都需要对硬盘分区。</p>
+<p>前者运行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/sda</span><br></pre></td></tr></table></figure>
+<p>后者运行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/sdb</span><br></pre></td></tr></table></figure>
+<p>此时进入提示菜单，输入<code>m</code>或者<code>help</code>可以查看所有命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">a   toggle a bootable flag</span><br><span class="line">b   edit bsd disklabel</span><br><span class="line">c   toggle the dos compatibility flag</span><br><span class="line">d   delete a partition</span><br><span class="line">l   list known partition types</span><br><span class="line">m   <span class="built_in">print</span> this menu</span><br><span class="line">n   add a new partition</span><br><span class="line">o   create a new empty DOS partition table</span><br><span class="line">p   <span class="built_in">print</span> the partition table</span><br><span class="line">q   quit without saving changes</span><br><span class="line">s   create a new empty Sun disklabel</span><br><span class="line">t   change a partition<span class="string">'s system id</span><br><span class="line">u   change display/entry units</span><br><span class="line">v   verify the partition table</span><br><span class="line">w   write table to disk and exit</span><br><span class="line">x   extra functionality (experts only)</span></span><br></pre></td></tr></table></figure>
+<p>常用的为<code>p</code>（打印分区信息），<code>n</code>（添加一个新的分区），<code>w</code>（写入分区信息到磁盘并退出）。</p>
+<p>我们先输入<code>n</code>，得到输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Command action</span><br><span class="line">   e   extended</span><br><span class="line">   p   primary partition (<span class="number">1</span>-<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<p>在这里我们选择<code>p</code>（主分区），然后按照实际分区信息选择Partition number，其他的直接用默认值。最后输入<code>w</code>，保存并退出。</p>
+<p>重启虚拟机后再次运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk <span class="operator">-l</span></span><br></pre></td></tr></table></figure>
+<p>可以看到已经出现新的分区信息。</p>
+<h4 id="三、格式化新分区并挂载">三、格式化新分区并挂载</h4><p>若新分区为<code>/dev/sda4</code>，则运行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext3 /dev/sda4</span><br></pre></td></tr></table></figure>
+<p>将新分区格式化为ext3格式。</p>
+<p>创建新文件夹并将新分区挂载：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /mnt/nd</span><br><span class="line">mount /dev/sda4 /mnt/nd</span><br></pre></td></tr></table></figure>
+<p>修改分区表文件：<code>/etc/fstab</code>，在最后添加一行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/dev/sda4  /mnt/nd   ext3    defaults    <span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>保存后重启虚拟机即可。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2010/06/28/install-pptpd-on-centos5-5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          CentOS 5.5下安装基于pptpd的VPN服务
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2010/06/27/modify-time-on-xen-vps/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Xen VPS时间调整</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="extend-linux-disk-on-vmware" data-title="Windows下的VMware给Linux虚拟机硬盘扩容" data-url="http://chunhui.hu/2010/06/28/extend-linux-disk-on-vmware/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"julianhu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Julian Hu
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>

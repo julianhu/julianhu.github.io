@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CentOS 5.x下Nginx+PHP+Mysql安装手记 | 隐湖小筑 - Julian&#39;s home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="首先创建一个新文件install_lnmp.sh，输入以下内容：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS 5.x下Nginx+PHP+Mysql安装手记">
+<meta property="og:url" content="http://chunhui.hu/2010/06/26/install-lnmp-on-centos5/index.html">
+<meta property="og:site_name" content="隐湖小筑 - Julian's home">
+<meta property="og:description" content="首先创建一个新文件install_lnmp.sh，输入以下内容：">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS 5.x下Nginx+PHP+Mysql安装手记">
+<meta name="twitter:description" content="首先创建一个新文件install_lnmp.sh，输入以下内容：">
+  
+    <link rel="alternative" href="/atom.xml" title="隐湖小筑 - Julian&#39;s home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="http://7sbyks.com1.z0.glb.clouddn.com/head_001.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Julian Hu</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">不负此生，不负己心</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/springshine" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/chunhuihu" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CentOS/" style="font-size: 12.5px;">CentOS</a><a href="/tags/Ghost/" style="font-size: 10px;">Ghost</a><a href="/tags/IDE/" style="font-size: 10px;">IDE</a><a href="/tags/Linux/" style="font-size: 15px;">Linux</a><a href="/tags/Mercurial/" style="font-size: 10px;">Mercurial</a><a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a><a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a><a href="/tags/PHP/" style="font-size: 10px;">PHP</a><a href="/tags/SQL-Server/" style="font-size: 12.5px;">SQL Server</a><a href="/tags/VIM/" style="font-size: 10px;">VIM</a><a href="/tags/VMware/" style="font-size: 10px;">VMware</a><a href="/tags/VPN/" style="font-size: 10px;">VPN</a><a href="/tags/VPS/" style="font-size: 10px;">VPS</a><a href="/tags/Xen/" style="font-size: 12.5px;">Xen</a><a href="/tags/css/" style="font-size: 10px;">css</a><a href="/tags/disk/" style="font-size: 10px;">disk</a><a href="/tags/pptpd/" style="font-size: 10px;">pptpd</a><a href="/tags/webkit/" style="font-size: 10px;">webkit</a><a href="/tags/《JavaScript高级程序设计》/" style="font-size: 15px;">《JavaScript高级程序设计》</a><a href="/tags/《轻松scrum之旅——敏捷开发故事》/" style="font-size: 17.5px;">《轻松scrum之旅——敏捷开发故事》</a><a href="/tags/来自网络/" style="font-size: 12.5px;">来自网络</a><a href="/tags/版本控制/" style="font-size: 10px;">版本控制</a><a href="/tags/读书笔记/" style="font-size: 20px;">读书笔记</a><a href="/tags/随笔/" style="font-size: 12.5px;">随笔</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.sk80.com/">超子</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://dbanotes.net/">冯大辉</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.ruanyifeng.com/">阮一峰</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">水瓶座大叔一枚，上升星座处女座。从业IT十余年，仍童心未泯，幸矣。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Julian Hu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7sbyks.com1.z0.glb.clouddn.com/head_001.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Julian Hu</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">不负此生，不负己心</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/springshine" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/chunhuihu" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-install-lnmp-on-centos5" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2010/06/26/install-lnmp-on-centos5/" class="article-date">
+  	<time datetime="2010-06-26T13:22:13.000Z" itemprop="datePublished">2010-06-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CentOS 5.x下Nginx+PHP+Mysql安装手记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先创建一个新文件install_lnmp.sh，输入以下内容：</p>
+<a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/sh</span><br><span class="line"></span></span><br><span class="line"><span class="comment">#该文件为Mysql,PHP,Nginx自动安装脚本</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#Author: Eric Hu</span></span><br><span class="line"><span class="comment">#Date:   2010-06-24</span></span><br><span class="line"></span><br><span class="line"><span class="comment">####预设的一些变量，按需更改</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#Mysql root用户的密码</span></span><br><span class="line">mysql_<span class="built_in">pwd</span>=<span class="string">"admin"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">####创建需要的目录</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#存放下载软件的目录</span></span><br><span class="line">mkdir /soft</span><br><span class="line"><span class="comment">#存放网站文件的目录</span></span><br><span class="line">mkdir /web</span><br><span class="line"><span class="comment">#存放日志文件的目录</span></span><br><span class="line">mkdir -p /data/logs</span><br><span class="line"></span><br><span class="line"><span class="comment">####下载相关软件</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /soft</span><br><span class="line"><span class="comment">#mysql www.mysql.com</span></span><br><span class="line">wget http://dev.mysql.com/get/Downloads/MySQL-<span class="number">5.1</span>/mysql-<span class="number">5.1</span>.<span class="number">48</span>-linux-x86_64-glibc23.tar.gz/from/http://mysql.cdpa.nsysu.edu.tw/</span><br><span class="line"><span class="comment">#php www.php.net</span></span><br><span class="line">wget http://cn2.php.net/get/php-<span class="number">5.2</span>.<span class="number">13</span>.tar.gz/from/cn.php.net/mirror</span><br><span class="line"><span class="comment">#php-fpm www.php-fpm.org</span></span><br><span class="line">wget http://php-fpm.org/downloads/php-<span class="number">5.2</span>.<span class="number">13</span>-fpm-<span class="number">0.5</span>.<span class="number">14</span>.diff.gz</span><br><span class="line"><span class="comment">#nginx www.nginx.org</span></span><br><span class="line">wget http://nginx.org/download/nginx-<span class="number">0.7</span>.<span class="number">67</span>.tar.gz</span><br><span class="line"><span class="comment">#nginx需要用到的pcre http://www.pcre.org/</span></span><br><span class="line">wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-<span class="number">8.10</span>.tar.gz</span><br><span class="line"><span class="comment">#libiconv www.gnu.org/software/libiconv/</span></span><br><span class="line">wget http://ftp.gnu.org/pub/gnu/libiconv/libiconv-<span class="number">1.13</span>.<span class="number">1</span>.tar.gz</span><br><span class="line"><span class="comment">#libmcrypt http://sourceforge.net/projects/mcrypt/</span></span><br><span class="line">wget http://cdnetworks-kr-<span class="number">2</span>.dl.sourceforge.net/project/mcrypt/Libmcrypt/<span class="number">2.5</span>.<span class="number">8</span>/libmcrypt-<span class="number">2.5</span>.<span class="number">8</span>.tar.gz</span><br><span class="line"><span class="comment">#mcrypt http://sourceforge.net/projects/mcrypt/</span></span><br><span class="line">wget http://cdnetworks-kr-<span class="number">2</span>.dl.sourceforge.net/project/mcrypt/MCrypt/<span class="number">2.6</span>.<span class="number">8</span>/mcrypt-<span class="number">2.6</span>.<span class="number">8</span>.tar.gz</span><br><span class="line"><span class="comment">#mhash http://mhash.sourceforge.net/</span></span><br><span class="line">wget http://cdnetworks-kr-<span class="number">2</span>.dl.sourceforge.net/project/mhash/mhash/<span class="number">0.9</span>.<span class="number">9.9</span>/mhash-<span class="number">0.9</span>.<span class="number">9.9</span>.tar.bz2</span><br><span class="line"><span class="comment">##PHP相关扩展包</span></span><br><span class="line"><span class="comment">#APC http://pecl.php.net/package/APC</span></span><br><span class="line">wget http://pecl.php.net/get/APC-<span class="number">3.0</span>.<span class="number">19</span>.tgz</span><br><span class="line"><span class="comment">#memcache http://pecl.php.net/package/memcache</span></span><br><span class="line">wget http://pecl.php.net/get/memcache-<span class="number">2.2</span>.<span class="number">5</span>.tgz</span><br><span class="line"></span><br><span class="line"><span class="comment">#安装需要的系统程序库</span></span><br><span class="line">yum -y install patch gcc gcc-c++ autoconf libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel ncurses ncurses-devel curl curl-devel e2fsprogs e2fsprogs-devel krb5 krb5-devel libidn libidn-devel openssl openssl-devel openldap openldap-devel nss_ldap openldap-clients openldap-servers</span><br><span class="line"></span><br><span class="line"><span class="comment">####安装Mysql</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#添加Mysql组和用户</span></span><br><span class="line">groupadd mysql</span><br><span class="line">useradd -g mysql mysql</span><br><span class="line"></span><br><span class="line">\cp mysql-<span class="number">5.1</span>.<span class="number">48</span>-linux-x86_64-glibc23.tar.gz /usr/<span class="built_in">local</span>/</span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br><span class="line">tar -zxvf mysql-<span class="number">5.1</span>.<span class="number">48</span>-linux-x86_64-glibc23.tar.gz</span><br><span class="line">mv mysql-<span class="number">5.1</span>.<span class="number">48</span>-linux-x86_64-glibc23 mysql</span><br><span class="line">chown -R mysql.mysql mysql</span><br><span class="line"><span class="comment">#进入mysql目录操作</span></span><br><span class="line"><span class="built_in">cd</span> mysql</span><br><span class="line">\cp support-files/my-medium.cnf /etc/my.cnf</span><br><span class="line">scripts/mysql_install_db --user=mysql --basedir=/usr/<span class="built_in">local</span>/mysql </span><br><span class="line"><span class="comment">#设置为开机启动的服务</span></span><br><span class="line">\cp support-files/mysql.server /etc/init.d/mysqld</span><br><span class="line">chmod +x /etc/init.d/mysqld</span><br><span class="line">chkconfig --add mysqld</span><br><span class="line"><span class="comment">#开启服务</span></span><br><span class="line">service mysqld start</span><br><span class="line"><span class="comment">#更改root用户密码</span></span><br><span class="line">bin/mysqladmin -u root password <span class="variable">$mysql_pwd</span></span><br><span class="line"><span class="comment">#删除安装包</span></span><br><span class="line">rm <span class="operator">-f</span> /usr/<span class="built_in">local</span>/mysql-<span class="number">5.1</span>.<span class="number">48</span>-linux-x86_64-glibc23.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment">####安装PHP</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#安装需要的支持库</span></span><br><span class="line"><span class="built_in">cd</span> /soft</span><br><span class="line"><span class="comment">#安装libiconv</span></span><br><span class="line">tar zxvf libiconv-<span class="number">1.13</span>.<span class="number">1</span>.tar.gz</span><br><span class="line"><span class="built_in">cd</span> libiconv-<span class="number">1.13</span>.<span class="number">1</span>/</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span></span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line"><span class="comment">#安装libmcrypt</span></span><br><span class="line">tar zxvf libmcrypt-<span class="number">2.5</span>.<span class="number">8</span>.tar.gz</span><br><span class="line"><span class="built_in">cd</span> libmcrypt-<span class="number">2.5</span>.<span class="number">8</span>/</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">/sbin/ldconfig</span><br><span class="line"><span class="built_in">cd</span> libltdl/</span><br><span class="line">./configure --enable-ltdl-install</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="built_in">cd</span> ../../</span><br><span class="line"><span class="comment">#安装mhash</span></span><br><span class="line">tar jxvf mhash-<span class="number">0.9</span>.<span class="number">9.9</span>.tar.bz2</span><br><span class="line"><span class="built_in">cd</span> mhash-<span class="number">0.9</span>.<span class="number">9.9</span>/</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line">ln <span class="operator">-s</span> /usr/<span class="built_in">local</span>/lib/libmcrypt.la /usr/lib/libmcrypt.la</span><br><span class="line">ln <span class="operator">-s</span> /usr/<span class="built_in">local</span>/lib/libmcrypt.so /usr/lib/libmcrypt.so</span><br><span class="line">ln <span class="operator">-s</span> /usr/<span class="built_in">local</span>/lib/libmcrypt.so.<span class="number">4</span> /usr/lib/libmcrypt.so.<span class="number">4</span></span><br><span class="line">ln <span class="operator">-s</span> /usr/<span class="built_in">local</span>/lib/libmcrypt.so.<span class="number">4.4</span>.<span class="number">8</span> /usr/lib/libmcrypt.so.<span class="number">4.4</span>.<span class="number">8</span></span><br><span class="line">ln <span class="operator">-s</span> /usr/<span class="built_in">local</span>/lib/libmhash.a /usr/lib/libmhash.a</span><br><span class="line">ln <span class="operator">-s</span> /usr/<span class="built_in">local</span>/lib/libmhash.la /usr/lib/libmhash.la</span><br><span class="line">ln <span class="operator">-s</span> /usr/<span class="built_in">local</span>/lib/libmhash.so /usr/lib/libmhash.so</span><br><span class="line">ln <span class="operator">-s</span> /usr/<span class="built_in">local</span>/lib/libmhash.so.<span class="number">2</span> /usr/lib/libmhash.so.<span class="number">2</span></span><br><span class="line">ln <span class="operator">-s</span> /usr/<span class="built_in">local</span>/lib/libmhash.so.<span class="number">2.0</span>.<span class="number">1</span> /usr/lib/libmhash.so.<span class="number">2.0</span>.<span class="number">1</span></span><br><span class="line">ln <span class="operator">-s</span> /usr/<span class="built_in">local</span>/bin/libmcrypt-config /usr/bin/libmcrypt-config</span><br><span class="line"><span class="comment">#安装mcrypt</span></span><br><span class="line">tar zxvf mcrypt-<span class="number">2.6</span>.<span class="number">8</span>.tar.gz</span><br><span class="line"><span class="built_in">cd</span> mcrypt-<span class="number">2.6</span>.<span class="number">8</span>/</span><br><span class="line">/sbin/ldconfig</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line"><span class="comment">#准备安装PHP</span></span><br><span class="line">tar zxvf php-<span class="number">5.2</span>.<span class="number">13</span>.tar.gz</span><br><span class="line"><span class="comment">#打上php-fpm补丁</span></span><br><span class="line">gzip -cd php-<span class="number">5.2</span>.<span class="number">13</span>-fpm-<span class="number">0.5</span>.<span class="number">14</span>.diff.gz | patch <span class="operator">-d</span> php-<span class="number">5.2</span>.<span class="number">13</span> -p1</span><br><span class="line"><span class="built_in">cd</span> php-<span class="number">5.2</span>.<span class="number">13</span>/</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/php --with-config-file-path=/usr/<span class="built_in">local</span>/php/etc --with-mysql=/usr/<span class="built_in">local</span>/mysql --with-mysqli=/usr/<span class="built_in">local</span>/mysql/bin/mysql_config --with-iconv-dir=/usr/<span class="built_in">local</span> --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir=/usr --enable-xml --disable-rpath --enable-discard-path --enable-safe-mode --enable-bcmath --enable-shmop --enable-sysvsem --enable-inline-optimization --with-curl --with-curlwrappers --enable-mbregex --enable-fastcgi --enable-fpm --enable-force-cgi-redirect --enable-mbstring --with-mcrypt --with-gd --enable-gd-native-ttf --with-openssl --with-mhash --enable-pcntl --enable-sockets --with-xmlrpc --enable-zip --enable-soap --without-pear</span><br><span class="line">make ZEND_EXTRA_LIBS=<span class="string">'-liconv'</span></span><br><span class="line">make install</span><br><span class="line">\cp php.ini-dist /usr/<span class="built_in">local</span>/php/etc/php.ini</span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line"><span class="comment">#安装memcache扩展</span></span><br><span class="line">tar zxvf memcache-<span class="number">2.2</span>.<span class="number">5</span>.tgz</span><br><span class="line"><span class="built_in">cd</span> memcache-<span class="number">2.2</span>.<span class="number">5</span>/</span><br><span class="line">/usr/<span class="built_in">local</span>/php/bin/phpize</span><br><span class="line">./configure --with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line"><span class="comment">#安装APC扩展</span></span><br><span class="line">tar -zxvf APC-<span class="number">3.0</span>.<span class="number">19</span>.tgz</span><br><span class="line"><span class="built_in">cd</span> APC-<span class="number">3.0</span>.<span class="number">19</span>/</span><br><span class="line">/usr/<span class="built_in">local</span>/php/bin/phpize</span><br><span class="line">./configure --with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line"><span class="comment">#配置php.ini文件</span></span><br><span class="line">sed -i <span class="string">'s#extension_dir = "./"#extension_dir = "/usr/local/php/lib/php/extensions/no-debug-non-zts-20060613/"\nextension = "memcache.so"\nextension = "apc.so"\n#'</span> /usr/<span class="built_in">local</span>/php/etc/php.ini</span><br><span class="line">sed -i <span class="string">'s#output_buffering = Off#output_buffering = On#'</span> /usr/<span class="built_in">local</span>/php/etc/php.ini</span><br><span class="line">sed -i <span class="string">'s#magic_quotes_gpc = On#magic_quotes_gpc = Off#'</span> /usr/<span class="built_in">local</span>/php/etc/php.ini</span><br><span class="line"></span><br><span class="line"><span class="comment">####安装nginx</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#添加www组和用户</span></span><br><span class="line">/usr/sbin/groupadd www</span><br><span class="line">/usr/sbin/useradd -g www www</span><br><span class="line"><span class="comment">#安装pcre</span></span><br><span class="line">tar -zxvf pcre-<span class="number">8.10</span>.tar.gz</span><br><span class="line"><span class="built_in">cd</span> pcre-<span class="number">8.10</span>/</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line"><span class="comment">#准备安装Nginx</span></span><br><span class="line">tar zxvf nginx-<span class="number">0.7</span>.<span class="number">67</span>.tar.gz</span><br><span class="line"><span class="built_in">cd</span> nginx-<span class="number">0.7</span>.<span class="number">67</span>/</span><br><span class="line">./configure --user=www --group=www --prefix=/usr/<span class="built_in">local</span>/nginx --with-http_stub_status_module --with-http_ssl_module</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line"></span><br><span class="line"><span class="comment">#将/web和/data目录的宿主设为www</span></span><br><span class="line">chown -R www.www /web</span><br><span class="line">chown -R www.www /data</span><br><span class="line"></span><br><span class="line"><span class="comment">####将php-fpm和nginx随系统自动启动</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"ulimit -SHn 65535"</span> &gt;&gt; /etc/rc.local</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"/usr/local/php/sbin/php-fpm start"</span> &gt;&gt; /etc/rc.local</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"/usr/local/nginx/sbin/nginx"</span> &gt;&gt; /etc/rc.local</span><br><span class="line"></span><br><span class="line"><span class="comment">####将mysql和php的可执行命令路径导入环境变量，使之可以在命令行直接输入mysql和php访问，重启后生效</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"export PATH=\"\$PATH:/usr/local/php/bin:/usr/local/mysql/bin\""</span> &gt;&gt; /etc/profile</span><br></pre></td></tr></table></figure>
+<p>赋予install_lnmp.sh可执行权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x install_lnmp.sh</span><br></pre></td></tr></table></figure>
+<p>执行完毕后再做如下配置：</p>
+<p>打开/usr/local/php/etc/php-fpm.conf文件：</p>
+<ol>
+<li>搜索<code>&lt;value name=&quot;rlimit_files&quot;&gt;</code>，将其后的数字改为<code>65535</code></li>
+<li>查找<code>Unix user of processes</code>，去掉<code>&lt;value name=&quot;user&quot;&gt;</code>和<code>&lt;value name=&quot;group&quot;&gt;</code>的注释，并将user和group设为www用户</li>
+<li>查找<code>&lt;value name=&quot;display_errors&quot;&gt;</code>，去掉前面的注释，并将0改为1</li>
+</ol>
+<p>打开/usr/local/nginx/conf/nginx.conf文件，将里面的所有内容替换成以下这些：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">user  www www;</span><br><span class="line"></span><br><span class="line">worker_processes <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">error_<span class="built_in">log</span>  /data/logs/nginx_error.log  crit;</span><br><span class="line"></span><br><span class="line">pid        /usr/<span class="built_in">local</span>/nginx/nginx.pid;</span><br><span class="line"></span><br><span class="line"><span class="comment">#Specifies the value for maximum file descriptors that can be opened by this process.</span></span><br><span class="line">worker_rlimit_nofile <span class="number">65535</span>;</span><br><span class="line"></span><br><span class="line">events</span><br><span class="line">&#123;</span><br><span class="line">  use epoll;</span><br><span class="line">  worker_connections <span class="number">65535</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http</span><br><span class="line">&#123;</span><br><span class="line">  include       mime.types;</span><br><span class="line">  default_<span class="built_in">type</span>  application/octet-stream;</span><br><span class="line"></span><br><span class="line">  <span class="comment">#charset  gb2312;</span></span><br><span class="line">      </span><br><span class="line">  server_names_<span class="built_in">hash</span>_bucket_size <span class="number">128</span>;</span><br><span class="line">  client_header_buffer_size <span class="number">32</span>k;</span><br><span class="line">  large_client_header_buffers <span class="number">4</span> <span class="number">32</span>k;</span><br><span class="line">  client_max_body_size <span class="number">8</span>m;</span><br><span class="line">      </span><br><span class="line">  sendfile on;</span><br><span class="line">  tcp_nopush     on;</span><br><span class="line"></span><br><span class="line">  keepalive_timeout <span class="number">60</span>;</span><br><span class="line"></span><br><span class="line">  tcp_nodelay on;</span><br><span class="line"></span><br><span class="line">  fastcgi_connect_timeout <span class="number">300</span>;</span><br><span class="line">  fastcgi_send_timeout <span class="number">300</span>;</span><br><span class="line">  fastcgi_<span class="built_in">read</span>_timeout <span class="number">300</span>;</span><br><span class="line">  fastcgi_buffer_size <span class="number">64</span>k;</span><br><span class="line">  fastcgi_buffers <span class="number">4</span> <span class="number">64</span>k;</span><br><span class="line">  fastcgi_busy_buffers_size <span class="number">128</span>k;</span><br><span class="line">  fastcgi_temp_file_write_size <span class="number">128</span>k;</span><br><span class="line"></span><br><span class="line">  gzip on;</span><br><span class="line">  gzip_min_length  <span class="number">1</span>k;</span><br><span class="line">  gzip_buffers     <span class="number">4</span> <span class="number">16</span>k;</span><br><span class="line">  gzip_http_version <span class="number">1.0</span>;</span><br><span class="line">  gzip_comp_level <span class="number">2</span>;</span><br><span class="line">  gzip_types       text/plain application/x-javascript text/css application/xml;</span><br><span class="line">  gzip_vary on;</span><br><span class="line"></span><br><span class="line">  <span class="comment">#limit_zone  crawler  $binary_remote_addr  10m;</span></span><br><span class="line"></span><br><span class="line">  server</span><br><span class="line">  &#123;</span><br><span class="line">    listen       <span class="number">80</span>;</span><br><span class="line">    server_name  <span class="number">192.168</span>.<span class="number">1.88</span>;</span><br><span class="line">    index index.html index.htm index.php;</span><br><span class="line">    root  /web;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#limit_conn   crawler  20;    </span></span><br><span class="line">                            </span><br><span class="line">    location ~ .*\.(php|php5)?$</span><br><span class="line">    &#123;      </span><br><span class="line">      <span class="comment">#fastcgi_pass  unix:/tmp/php-cgi.sock;</span></span><br><span class="line">      fastcgi_pass  <span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9000</span>;</span><br><span class="line">      fastcgi_index index.php;</span><br><span class="line">      include fastcgi.conf;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$</span><br><span class="line">    &#123;</span><br><span class="line">      expires      <span class="number">30</span>d;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ .*\.(js|css)?$</span><br><span class="line">    &#123;</span><br><span class="line">      expires      <span class="number">1</span>h;</span><br><span class="line">    &#125;    </span><br><span class="line"></span><br><span class="line">    <span class="built_in">log</span>_format  access  <span class="string">'$remote_addr - $remote_user [$time_local] "$request" '</span></span><br><span class="line">              <span class="string">'$status $body_bytes_sent "$http_referer" '</span></span><br><span class="line">              <span class="string">'"$http_user_agent" $http_x_forwarded_for'</span>;</span><br><span class="line">    access_<span class="built_in">log</span>  /data/logs/access.log  access;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">  server</span><br><span class="line">  &#123;</span><br><span class="line">    listen  <span class="number">8080</span>;</span><br><span class="line">    server_name  <span class="number">192.168</span>.<span class="number">1.88</span>:<span class="number">8080</span>;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">    stub_status on;</span><br><span class="line">    access_<span class="built_in">log</span>   off;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中的server_name以及目录的对应关系请按自己实际情况更改。</p>
+<p>重启系统后即可使用。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2010/06/27/modify-time-on-xen-vps/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Xen VPS时间调整
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2008/02/02/ghost-cant-find-gho-file/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ghost备份后找不到GHO镜像文件</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="install-lnmp-on-centos5" data-title="CentOS 5.x下Nginx+PHP+Mysql安装手记" data-url="http://chunhui.hu/2010/06/26/install-lnmp-on-centos5/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"julianhu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Julian Hu
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>

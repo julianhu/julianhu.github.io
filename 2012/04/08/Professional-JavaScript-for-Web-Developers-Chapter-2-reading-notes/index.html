@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>《JavaScript高级程序设计》第2章 在HTML中使用JavaScript | 隐湖小筑 - Julian&#39;s home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="HTML 4.01为&amp;lt;script&amp;gt;定义了下列5个属性：
+
+charset可选。表示通过src属性指定的代码的字符集。由于大多数浏览器会忽略它的值，因此这个属性很少有人用。
+defer可选。表示脚本可以延迟到文档完全被解析和显示之后再执行。
+language已废弃。原来用于表示编写代码使用的脚本语言（如JavaScript、JavaScript1.2或VBScript）。大多数浏览器会">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《JavaScript高级程序设计》第2章 在HTML中使用JavaScript">
+<meta property="og:url" content="http://chunhui.hu/2012/04/08/Professional-JavaScript-for-Web-Developers-Chapter-2-reading-notes/index.html">
+<meta property="og:site_name" content="隐湖小筑 - Julian's home">
+<meta property="og:description" content="HTML 4.01为&amp;lt;script&amp;gt;定义了下列5个属性：
+
+charset可选。表示通过src属性指定的代码的字符集。由于大多数浏览器会忽略它的值，因此这个属性很少有人用。
+defer可选。表示脚本可以延迟到文档完全被解析和显示之后再执行。
+language已废弃。原来用于表示编写代码使用的脚本语言（如JavaScript、JavaScript1.2或VBScript）。大多数浏览器会">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《JavaScript高级程序设计》第2章 在HTML中使用JavaScript">
+<meta name="twitter:description" content="HTML 4.01为&amp;lt;script&amp;gt;定义了下列5个属性：
+
+charset可选。表示通过src属性指定的代码的字符集。由于大多数浏览器会忽略它的值，因此这个属性很少有人用。
+defer可选。表示脚本可以延迟到文档完全被解析和显示之后再执行。
+language已废弃。原来用于表示编写代码使用的脚本语言（如JavaScript、JavaScript1.2或VBScript）。大多数浏览器会">
+  
+    <link rel="alternative" href="/atom.xml" title="隐湖小筑 - Julian&#39;s home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="http://7sbyks.com1.z0.glb.clouddn.com/head_001.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Julian Hu</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">不负此生，不负己心</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/springshine" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/chunhuihu" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CentOS/" style="font-size: 12.5px;">CentOS</a><a href="/tags/Ghost/" style="font-size: 10px;">Ghost</a><a href="/tags/IDE/" style="font-size: 10px;">IDE</a><a href="/tags/Linux/" style="font-size: 15px;">Linux</a><a href="/tags/Mercurial/" style="font-size: 10px;">Mercurial</a><a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a><a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a><a href="/tags/PHP/" style="font-size: 10px;">PHP</a><a href="/tags/SQL-Server/" style="font-size: 12.5px;">SQL Server</a><a href="/tags/VIM/" style="font-size: 10px;">VIM</a><a href="/tags/VMware/" style="font-size: 10px;">VMware</a><a href="/tags/VPN/" style="font-size: 10px;">VPN</a><a href="/tags/VPS/" style="font-size: 10px;">VPS</a><a href="/tags/Xen/" style="font-size: 12.5px;">Xen</a><a href="/tags/css/" style="font-size: 10px;">css</a><a href="/tags/disk/" style="font-size: 10px;">disk</a><a href="/tags/pptpd/" style="font-size: 10px;">pptpd</a><a href="/tags/webkit/" style="font-size: 10px;">webkit</a><a href="/tags/《JavaScript高级程序设计》/" style="font-size: 15px;">《JavaScript高级程序设计》</a><a href="/tags/《轻松scrum之旅——敏捷开发故事》/" style="font-size: 17.5px;">《轻松scrum之旅——敏捷开发故事》</a><a href="/tags/来自网络/" style="font-size: 12.5px;">来自网络</a><a href="/tags/版本控制/" style="font-size: 10px;">版本控制</a><a href="/tags/读书笔记/" style="font-size: 20px;">读书笔记</a><a href="/tags/随笔/" style="font-size: 12.5px;">随笔</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.sk80.com/">超子</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://dbanotes.net/">冯大辉</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.ruanyifeng.com/">阮一峰</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">水瓶座大叔一枚，上升星座处女座。从业IT十余年，仍童心未泯，幸矣。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Julian Hu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7sbyks.com1.z0.glb.clouddn.com/head_001.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Julian Hu</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">不负此生，不负己心</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/springshine" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/chunhuihu" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Professional-JavaScript-for-Web-Developers-Chapter-2-reading-notes" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2012/04/08/Professional-JavaScript-for-Web-Developers-Chapter-2-reading-notes/" class="article-date">
+  	<time datetime="2012-04-08T15:40:03.000Z" itemprop="datePublished">2012-04-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      《JavaScript高级程序设计》第2章 在HTML中使用JavaScript
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/《JavaScript高级程序设计》/">《JavaScript高级程序设计》</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>HTML 4.01为<code>&lt;script&gt;</code>定义了下列5个属性：</p>
+<ul>
+<li>charset<br>可选。表示通过src属性指定的代码的字符集。由于大多数浏览器会忽略它的值，因此这个属性很少有人用。</li>
+<li>defer<br>可选。表示脚本可以延迟到文档完全被解析和显示之后再执行。</li>
+<li>language<br>已废弃。原来用于表示编写代码使用的脚本语言（如JavaScript、JavaScript1.2或VBScript）。大多数浏览器会忽略这个属性，因此也没有必要再用了。</li>
+<li>src<br>可选。表示包含要执行代码的外部文件。</li>
+<li><p>type<br>必需。可以看成是language的替代属性；表示编写代码使用的脚本语言的内容类型（也称为MIME类型）。虽然<code>text/javascript</code>和<code>text/ecmascript</code>都已经不被推荐使用，但人们一直以来使用的都还是<code>text/javascript</code>。实际上，服务器在传送js文件时使用的MIME类型通常是<code>application/x-javascript</code>，但在type中设置这个值却可能导致脚本被忽略。另外，在非IE浏览器中还可以使用一下值：<code>application/javascript</code>和<code>application/ecmascript</code>。考虑到约定俗成和最大限度的浏览器兼容性，目前type属性的值依旧还是<code>text/javascript</code>。</p>
+<a id="more"></a>
+</li>
+</ul>
+</li>
+<li><p>在使用<code>&lt;script&gt;</code>嵌入JavaScript代码时，记住不要在代码中的任何地方出现“<code>&lt;/script&gt;</code>”字符串。<br>例如，浏览器在加载下面所示的代码时就会产生一个错误：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">sayScript</span><span class="params">()</span> </span>&#123;</span><br><span class="line">          alert(<span class="string">"&lt;/script&gt;"</span>);</span><br><span class="line">     &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 通过把这个字符串分隔为两部分可以解决这个问题，例如：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">sayScript</span><span class="params">()</span> </span>&#123;</span><br><span class="line">          alert(<span class="string">"&lt;/scr"</span> + <span class="string">"ipt&gt;"</span>);</span><br><span class="line">     &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 注：将&gt;转义后也可以。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">"&lt;/script\&gt;"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按照惯例，外部JavaScript文件带有.js扩展名。但这个扩展名不是必需的，因为浏览器不会检查包含JavaScript的文件的扩展名。这样一来，使用JSP、PHP或其他服务器语言动态生成JavaScript代码也就成为了可能。</p>
+</li>
+<li><p>带有src属性的<code>&lt;script&gt;</code>元素不应该在其<code>&lt;script&gt;</code>和<code>&lt;/script&gt;</code>标签之间再包含额外的JavaScript代码。其间的代码不会被执行。</p>
+</li>
+<li><p><code>&lt;script&gt;</code>的defer属性会让脚本延迟到整个页面都解析完毕后再运行。与把<code>&lt;script&gt;</code>元素放在页面最底部的效果是一样的。<br> 不过，并非所有浏览器都支持defer属性。IE和Firefox3.1（今后可能还有其他的浏览器）是目前唯一支持defer属性的主流浏览器。其他浏览器则会忽略这个属性，不延迟脚本的执行。</p>
+</li>
+<li><p>在XHTML中的用法<br> 比较语句“a &lt; b”中的小于号（&lt;）在XHTML中将被当做开始一个新标签来解析。但是标签后不能跟空格，因此会导致语法错误。<br> 避免出现类似语法错误的方法有两个。<br> 一是用相应的HTML实体（<code>&amp;lt;</code>）替换小于号（&lt;）。但会导致代码不好理解。<br> 二是用CData片段来包含JavaScript代码。如下所示：</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="prolog">&lt;![<span class="name">CDATA</span>[</span><br><span class="line">     //你的<span class="name">JS</span>代码</span><br><span class="line">]]]] &gt; </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 但是还有不少浏览器不兼容XHTML，因而不支持CDATA片段。所以需要将CDATA标记注释掉：</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="1c"></span><br><span class="line"><span class="comment">//&lt;![CDATA[</span></span><br><span class="line">     <span class="comment">//你的JS代码</span></span><br><span class="line"><span class="comment">//]]]] &gt;</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不推荐使用的语法</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="dust"><span class="xml"><span class="comment">&lt;!--</span><br><span class="line">     function sayHi() </span></span><span class="expression">&#123;</span><br><span class="line">          <span class="variable">alert</span>(<span class="string">"Hi!"</span>);</span><br><span class="line">     &#125;</span><span class="xml"><span class="comment"></span><br><span class="line">//--&gt;</span></span></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 该种写法是为了兼容历史上不支持<code>&lt;script&gt;</code>元素的浏览器而提出的。目前所有浏览器都已经支持JavaScript，因此也就没必要再使用了。</p>
+</li>
+<li><p>一般认为最好的做法是尽可能使用外部文件来包含JavaScript代码。有如下优点：<br> 1）可维护性<br> 2）可缓存<br> 3）可适应未来——通过外部文件来包含JavaScript无须使用XHTML或注释hack。HTML和XHTML包含外部文件的语法是相同的。</p>
+</li>
+<li><p>文档模式<br> IE5.5引入了文档模式的概念。最初的两种模式为：<br> 混杂模式（quirks mode）：会让IE的行为与IE5相同。<br> 标准模式（standards mode）：让IE的行为更接近标准行为。<br> 后来IE又提出一种模式：<br> 准标准模式（almost standards mode）：大部分特性都符合标准。<br> 如果文档开始处没有文档类型声明，则所有浏览器都会默认开启混杂模式。</p>
+<p> 标准模式用以下声明开启：</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--  HTML 4.01 严格型 --&gt;</span></span><br><span class="line"><span class="doctype">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"</span><br><span class="line">"http://www.w3.org/TR/html4/strict.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- XHTML 1.0 严格型 --&gt;</span></span><br><span class="line"><span class="doctype">&lt;!DOCTYPE html PUBLIC</span><br><span class="line">"-//W3C//DTD XHTML 1.0 Strict//EN"</span><br><span class="line">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 准标准模式通过使用过渡型（transitional）或框架型（frameset）文档类型来触发：</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--  HTML 4.01 过渡型 --&gt;</span></span><br><span class="line"><span class="doctype">&lt;!DOCTYPE HTML PUBLIC</span><br><span class="line">"-//W3C//DTD HTML 4.01 Transitional//EN"</span><br><span class="line">"http://www.w3.org/TR/html4/loose.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--  HTML 4.01 框架集型 --&gt;</span></span><br><span class="line"><span class="doctype">&lt;!DOCTYPE HTML PUBLIC</span><br><span class="line">"-//W3C//DTD HTML 4.01 Frameset//EN"</span><br><span class="line">"http://www.w3.org/TR/html4/frameset.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--  XHTML 1.0 过渡型 --&gt;</span></span><br><span class="line"><span class="doctype">&lt;!DOCTYPE html PUBLIC </span><br><span class="line">"-//W3C//DTD XHTML 1.0 Transitional//EN"</span><br><span class="line">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--  XHTML 1.0 框架集型 --&gt;</span></span><br><span class="line"><span class="doctype">&lt;!DOCTYPE html PUBLIC </span><br><span class="line">"-//W3C//DTD XHTML 1.0 Frameset//EN"</span><br><span class="line">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 准标准模式与标准模式非常接近，它们的差异几乎可以忽略不计。<br> IE8又引入了一种新的模式：<br> 超级标准模式：让IE以其所有版本中最符合标准的方式来解释网页内容。<br> 混杂模式让IE像IE5，标准模式使用IE7的呈现引擎，而超级标准模式则是IE8的默认文档模式。<br> 可以用下面的特殊的<meta>值来关闭IE８的默认文档模式：</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"X-UA-Compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=7"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 其中，content属性中IE的值用于指定使用哪个版本的呈现引擎来呈现页面。</p>
+</li>
+<li><p><code>&lt;noscript&gt;</code>元素<br>该元素用以在不支持JavaScript的浏览器中显示替代的内容。它可以包含能够出现在文档<code>&lt;body&gt;</code>中的任何HTML元素（<code>&lt;script&gt;</code>元素除外）。<br>包含在<code>&lt;noscript&gt;</code>元素中的内容只有在下列情况下才会显示出来：<br>1）浏览器不支持脚本；<br>2）浏览器支持脚本 ，但脚本被禁用。<br>如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">noscript</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">p</span>&gt;</span>本页面需要浏览器支持（启用）JavaScript。</span><br><span class="line">          <span class="tag">&lt;/<span class="title">noscript</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2012/04/08/Professional-JavaScript-for-Web-Developers-Chapter-3-1-reading-notes/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          《JavaScript高级程序设计》第3章 基本概念(1)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2012/04/08/Professional-JavaScript-for-Web-Developers-Chapter-1-reading-notes/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">《JavaScript高级程序设计》第1章 JavaScript简介</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Professional-JavaScript-for-Web-Developers-Chapter-2-reading-notes" data-title="《JavaScript高级程序设计》第2章 在HTML中使用JavaScript" data-url="http://chunhui.hu/2012/04/08/Professional-JavaScript-for-Web-Developers-Chapter-2-reading-notes/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"julianhu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Julian Hu
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
