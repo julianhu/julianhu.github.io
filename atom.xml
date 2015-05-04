@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[隐湖小筑 - Julian's home]]></title>
-  <subtitle><![CDATA[不负此生，不负己心]]></subtitle>
+  <title><![CDATA[隐湖小筑]]></title>
+  <subtitle><![CDATA[明朝即长路，惜取此时心。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://chunhui.hu/"/>
   <updated>2015-05-02T10:22:32.000Z</updated>

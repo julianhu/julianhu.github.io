@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://chunhui.hu/about/index.html</loc>
+    <lastmod>2015-05-04T09:05:34.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://chunhui.hu/categories/index.html</loc>
+    <lastmod>2015-05-04T09:03:28.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://chunhui.hu/tags/index.html</loc>
+    <lastmod>2015-05-04T09:00:56.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://chunhui.hu/2012/04/15/Qing-song-scrum-zhi-lv-Chapter-4-reading-notes/</loc>
     <lastmod>2015-05-02T10:23:47.000Z</lastmod>
   </url>
