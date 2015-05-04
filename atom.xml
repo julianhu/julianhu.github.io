@@ -4,7 +4,7 @@
   <subtitle><![CDATA[明朝即长路，惜取此时心。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://chunhui.hu/"/>
-  <updated>2015-05-04T14:02:45.000Z</updated>
+  <updated>2015-05-04T15:06:11.000Z</updated>
   <id>http://chunhui.hu/</id>
   
   <author>
@@ -19,67 +19,129 @@
     <link href="http://chunhui.hu/2013/12/07/Change-VIM-to-your-IDE/"/>
     <id>http://chunhui.hu/2013/12/07/Change-VIM-to-your-IDE/</id>
     <published>2013-12-07T03:40:14.000Z</published>
-    <updated>2015-05-04T14:02:45.000Z</updated>
-    <content type="html"><![CDATA[<ol>
-<li><p>写在前面<br> 一般来说，一个完整的IDE至少需要具备以下几个特征：代码加亮、函数定位、文件浏览、导航器、代码补全。所以，VIM本身来说并不是一个合格的IDE，但是对于喜欢它的人，可以通过它强大的插件系统来实现以上全部功能。<br> 另外，VIM作为IDE更有以下这些优势：<br> 1）脱离鼠标，提高效率<br> 2）插件丰富，超强DIY<br> 3）简单轻量，一个vimrc走天下<br> 4）跨平台（Linux/Win/Mac）：VIM，gVIM，MacVIM<br> 5）可以直接在linux开发机上开发<br> 在介绍如何打造IDE之前，首先请先检查系统自带的VIM的版本，请勿&lt;7.0，尽量安装最新版。</p>
- <a id="more"></a>
-</li>
-<li><p>Ctags<br> 2.1. 简介<br> Ctags是一个用于从程序源代码树产生索引文件（或tag文件)，从而便于文本编辑器来实现快速定位的实用工具。<br> 2.2. 官网<br> <a href="http://ctags.sourceforge.net/" target="_blank" rel="external">http://ctags.sourceforge.net/</a><br> 2.3. 安装<br> 注：请下载5.6之后的版本</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://prdownloads.sourceforge.net/ctags/ctags-<span class="number">5.8</span>.tar.gz</span><br><span class="line">tar -xzvf ctags-<span class="number">5.8</span>.tar.gz</span><br><span class="line"><span class="built_in">cd</span> ctags-<span class="number">5.8</span></span><br><span class="line">.configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-<p> 2.4. 索引</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/your_code_path</span><br><span class="line">ctags -R （要支持JS请参考附录）</span><br></pre></td></tr></table></figure>
-<p> 注：如果做了代码修改，比如函数的定义变更、删除，需要重新建立索引。<br> 2.5. 使用<br> 1）在vim中运行命令：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="built_in">set</span> tags=/home/your_code_path/tags</span><br></pre></td></tr></table></figure>
-<p> 2）跳转<br> <code>Ctrl + ]</code>：跳转到函数定义处<br> <code>Ctrl + t</code>：跳回上一处</p>
-</li>
-<li><p>Cscope<br> 3.1. 简介<br> “Ctags的超频版”，不仅支持变量/函数的定义查询，还记录了函数的调用处查询等功能。<br> 3.2. 官网<br> <a href="http://cscope.sourceforge.net/" target="_blank" rel="external">http://cscope.sourceforge.net/</a><br> 3.3. 安装<br> 1）检查系统中是否有cscope命令，如果没有则如下安装：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-<p> 2）运行</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim --version | grep cscope</span><br></pre></td></tr></table></figure>
-<p> 查看vim是否支持cscope，如果有“<code>+cscope</code>”则支持，否则不支持<br> 3）如果vim不支持cscope，则需要加上以下参数重新编译vim：<br> <code>--enable-cscope</code><br> 3.4. 使用<br> 1）生成索引</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find . -iname <span class="string">'*.php'</span> -o -iname <span class="string">'*.js'</span> &gt; cscope.files</span><br><span class="line">cscope -bkq （更多参数请查看附录）</span><br></pre></td></tr></table></figure>
-<p> 2）生效<br> 用vim打开文件，输入命令：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:cs add /home/your_code_path/cscope.out /home/your_code_path</span><br></pre></td></tr></table></figure>
-<p> 3）用法</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">:cs find s name         查找函数名、宏、枚举值等出现的地方</span><br><span class="line">:cs find g name         查找函数、宏、枚举等定义的位置，类似ctags所提供的功能</span><br><span class="line">:cs find d name         查找本函数调用的函数</span><br><span class="line">:cs find c name         查找调用本函数的函数</span><br><span class="line">:cs find t name          查找指定的字符串</span><br><span class="line">:cs find e name         查找egrep模式，相当于egrep功能，但查找速度要快些</span><br><span class="line">:cs find f name          查找并打开文件，类似vim的find功能</span><br><span class="line">:cs find i name          查找包含本文件的文件</span><br></pre></td></tr></table></figure>
-<p> 可以在.vimrc文件中做如下快捷键映射：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">nmap &lt;C-\&gt;s :cs find s &lt;C-R&gt;=expand(<span class="string">"&lt;cword&gt;"</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">nmap &lt;C-\&gt;g :cs find g &lt;C-R&gt;=expand(<span class="string">"&lt;cword&gt;"</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">nmap &lt;C-\&gt;c :cs find c &lt;C-R&gt;=expand(<span class="string">"&lt;cword&gt;"</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">nmap &lt;C-\&gt;t :cs find t &lt;C-R&gt;=expand(<span class="string">"&lt;cword&gt;"</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">nmap &lt;C-\&gt;d :cs find d &lt;C-R&gt;=expand(<span class="string">"&lt;cword&gt;"</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">nmap &lt;C-\&gt;e :cs find e &lt;C-R&gt;=expand(<span class="string">"&lt;cword&gt;"</span>)&lt;CR&gt;</span><br><span class="line">nmap &lt;C-\&gt;f :cs find f &lt;C-R&gt;=expand(<span class="string">"&lt;cfile&gt;"</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">nmap &lt;C-\&gt;i :cs find i &lt;C-R&gt;=expand(<span class="string">"&lt;cfile&gt;"</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">nmap &lt;C-\&gt;z :cs find i &lt;C-R&gt;=expand(<span class="string">"%:t"</span>)&lt;CR&gt;&lt;CR&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>TagList<br> 4.1. 简介<br> VIM插件，用来在Vim的一个垂直或水平的分割窗口中显示一个文件中定义的tags（函数, 类, 结构,变量等）<br> 4.2. 官网<br> <a href="http://www.vim.org/scripts/script.php?script_id=273" target="_blank" rel="external">http://www.vim.org/scripts/script.php?script_id=273</a><br> 4.3. 安装<br> 1）找到系统的vim插件目录和文档目录，如：<code>/usr/share/vim/vim72/plugin和/usr/share/vim/vim72/doc</code><br> 2）将下载的插件解压，里面的文件分别复制到对应以上两个目录中<br> 4.4. 使用<br> 1）在<code>~/.vimrc</code>文件中添加下面两句：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> Tlist_Show_One_File=<span class="number">1</span></span><br><span class="line"><span class="built_in">let</span> Tlist_Exit_OnlyWindow=<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p> 2）用vim打开一个源代码<br> 3）运行命令：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:Tlist</span><br></pre></td></tr></table></figure>
-<p> 4）按键<br> 回车：跳到定义<br> 空格：显示函数完整定义</p>
-</li>
-<li><p>WinManager<br> 5.1. 简介<br> 文件浏览器和窗口管理器<br> 5.2. 官网<br> <a href="http://www.vim.org/scripts/script.php?script_id=95" target="_blank" rel="external">http://www.vim.org/scripts/script.php?script_id=95</a><br> 5.3. 安装<br> 同Taglist。<br> 5.4. 使用<br> 1）在<code>~/.vimrc</code>中增加下面两句：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> g:winManagerWindowLayout=<span class="string">'FileExplorer|TagList'</span></span><br><span class="line">nmap wm :WMToggle&lt;cr&gt;</span><br></pre></td></tr></table></figure>
-<p> 2）重启vim，在normal模式下输入”<code>wm</code>“，则会调出文件管理器和TagList窗口<br> 3）再次输入”<code>wm</code>“命令可以关闭以上两个窗口</p>
-</li>
-<li><p>MiniBufExplorer<br> 6.1. 简介<br> Vim插件，用来快速浏览和操作缓冲区（buffer）。<br> 6.2. 官网<br> <a href="http://www.vim.org/scripts/script.php?script_id=159" target="_blank" rel="external">http://www.vim.org/scripts/script.php?script_id=159</a><br> 6.3. 安装<br> 同TagList。<br> 6.4. 使用<br> 1） 当你只编辑一个buffer的时候MiniBufExplorer派不上用场, 当你打开第二个buffer的时候, MiniBufExplorer窗口就会自动出来了。<br> 2） 当你把光标置于这个窗口时, 有下面几个快捷键可以用：<br> <code>&lt;Tab&gt;</code>      向前循环切换到每个buffer名上<br> <code>&lt;S-Tab&gt;</code>    向后循环切换到每个buffer名上<br> <code>&lt;Enter&gt;</code>    在打开光标所在的buffer<br> <code>d</code>          删除光标所在的buffer<br> 3） 在<code>~/.vimrc</code>中设置：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> g:miniBufExplMapWindowNavVim = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p> 则可以用<c-h,j,k,l>切换到上下左右的窗口中去。<br> 4） 在命令模式下：<br> <code>:bn</code>            打开当前buffer的下一个buffer<br> <code>:bp</code>            打开当前buffer的前一个buffer<br> <code>:b&quot;num&quot;</code>        打开指定的buffer，”num”指的是buffer开始的那个数字</c-h,j,k,l></p>
-</li>
-<li><p>new-omni-completion(全能补全)<br> 7.1. 前提<br> 安装了Ctags，并生成索引文件。<br> 7.2. 使用<br> 1）在~/.vimrc文件中增加下面两句:</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">filetype plugin indent on 打开文件类型检测</span><br><span class="line"><span class="built_in">set</span> completeopt=longest,menu 关掉智能补全时的预览窗口（需要VIM <span class="number">7</span>以上才支持）</span><br></pre></td></tr></table></figure>
-<p> 2）打开代码文件，进入Insert模式, 然后按下”<code>Ctrl+X Ctrl+O</code>“即可<br> 3）快捷键<br> <code>Ctrl+P</code>       向前切换成员<br> <code>Ctrl+N</code>       向后切换成员<br> <code>Ctrl+E</code>       表示退出下拉窗口, 并退回到原来录入的文字<br> <code>Ctrl+Y</code>       表示退出下拉窗口, 并接受当前选项</p>
-</li>
-<li><p>Vundle<br> 8.1. 简介<br> VIM插件管理工具，使用git来管理插件，更新方便，支持搜索，一键更新，从此只需要一个vimrc走天下。<br> 8.2. 官网<br> <a href="https://github.com/gmarik/vundle" target="_blank" rel="external">https://github.com/gmarik/vundle</a></p>
-</li>
-<li><p>其他常用命令<br> <code>%</code>      跳转到配对的括号去<br> <code>[[</code>     跳转到代码块的开头去(但要求代码块中’{‘必须单独占一行)<br> <code>gD</code>     跳转到局部变量的定义处<br> <code>&#39;&#39;</code>     跳转到光标上次停靠的地方, 是两个’, 而不是一个”<br> <code>mx</code>     设置书签,x只能是a-z的26个字母<br> <code>`x</code>     跳转到书签处(“`“是1左边的键)<br> <code>&gt;&gt;</code>     增加缩进,”x&gt;&gt;”表示增加以下x行的缩进<br> <code>&lt;&lt;</code>     减少缩进,”x&lt;&lt;”表示减少以下x行的缩进</p>
-<p> 参看：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">:<span class="built_in">help</span> usr_29</span><br><span class="line">:<span class="built_in">help</span> usr_30</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>附录<br>10.1. 让Ctags支持Javascript</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.ctags</span><br></pre></td></tr></table></figure>
+    <updated>2015-05-04T15:06:11.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="写在前面">写在前面</h2><hr>
+<p>一般来说，一个完整的IDE至少需要具备以下几个特征：代码加亮、函数定位、文件浏览、导航器、代码补全。所以，VIM本身来说并不是一个合格的IDE，但是对于喜欢它的人，可以通过它强大的插件系统来实现以上全部功能。</p>
+<p>另外，VIM作为IDE更有以下这些优势：</p>
+<ul>
+<li>脱离鼠标，提高效率</li>
+<li>插件丰富，超强DIY</li>
+<li>简单轻量，一个vimrc走天下</li>
+<li>跨平台（Linux/Win/Mac）：VIM，gVIM，MacVIM</li>
+<li>可以直接在linux开发机上开发</li>
+</ul>
+<p>在介绍如何打造IDE之前，首先请先检查系统自带的VIM的版本，请勿&lt;7.0，尽量安装最新版。</p>
+<a id="more"></a>
+<h2 id="Ctags">Ctags</h2><hr>
+<h3 id="简介">简介</h3><p>Ctags是一个用于从程序源代码树产生索引文件（或tag文件)，从而便于文本编辑器来实现快速定位的实用工具。</p>
+<h3 id="官网">官网</h3><p><a href="http://ctags.sourceforge.net/" target="_blank" rel="external">http://ctags.sourceforge.net/</a></p>
+<h3 id="安装">安装</h3><p>注：请下载5.6之后的版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://prdownloads.sourceforge.net/ctags/ctags-<span class="number">5.8</span>.tar.gz</span><br><span class="line">tar -xzvf ctags-<span class="number">5.8</span>.tar.gz</span><br><span class="line"><span class="built_in">cd</span> ctags-<span class="number">5.8</span></span><br><span class="line">.configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h3 id="索引">索引</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/your_code_path</span><br><span class="line">ctags -R （要支持JS请参考附录）</span><br></pre></td></tr></table></figure>
+<p>注：如果做了代码修改，比如函数的定义变更、删除，需要重新建立索引。</p>
+<h3 id="使用">使用</h3><p>1) 在vim中运行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="built_in">set</span> tags=/home/your_code_path/tags</span><br></pre></td></tr></table></figure>
+<p>2) 跳转<br><code>Ctrl + ]</code>：跳转到函数定义处<br><code>Ctrl + t</code>：跳回上一处</p>
+<h2 id="Cscope">Cscope</h2><hr>
+<h3 id="简介-1">简介</h3><p>“Ctags的超频版”，不仅支持变量/函数的定义查询，还记录了函数的调用处查询等功能。</p>
+<h3 id="官网-1">官网</h3><p><a href="http://cscope.sourceforge.net/" target="_blank" rel="external">http://cscope.sourceforge.net/</a></p>
+<h3 id="安装-1">安装</h3><p>1）检查系统中是否有cscope命令，如果没有则如下安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<p>2）运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim --version | grep cscope</span><br></pre></td></tr></table></figure>
+<p>查看vim是否支持cscope，如果有“<code>+cscope</code>”则支持，否则不支持</p>
+<p>3）如果vim不支持cscope，则需要加上以下参数重新编译vim：<br><code>--enable-cscope</code></p>
+<h3 id="使用-1">使用</h3><p>1）生成索引</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find . -iname <span class="string">'*.php'</span> -o -iname <span class="string">'*.js'</span> &gt; cscope.files</span><br><span class="line">cscope -bkq （更多参数请查看附录）</span><br></pre></td></tr></table></figure>
+<p>2）生效</p>
+<p>用vim打开文件，输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:cs add /home/your_code_path/cscope.out /home/your_code_path</span><br></pre></td></tr></table></figure>
+<p>3）用法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">:cs find s name         查找函数名、宏、枚举值等出现的地方</span><br><span class="line">:cs find g name         查找函数、宏、枚举等定义的位置，类似ctags所提供的功能</span><br><span class="line">:cs find d name         查找本函数调用的函数</span><br><span class="line">:cs find c name         查找调用本函数的函数</span><br><span class="line">:cs find t name          查找指定的字符串</span><br><span class="line">:cs find e name         查找egrep模式，相当于egrep功能，但查找速度要快些</span><br><span class="line">:cs find f name          查找并打开文件，类似vim的find功能</span><br><span class="line">:cs find i name          查找包含本文件的文件</span><br></pre></td></tr></table></figure>
+<p>可以在.vimrc文件中做如下快捷键映射：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">nmap &lt;C-\&gt;s :cs find s &lt;C-R&gt;=expand(<span class="string">"&lt;cword&gt;"</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">nmap &lt;C-\&gt;g :cs find g &lt;C-R&gt;=expand(<span class="string">"&lt;cword&gt;"</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">nmap &lt;C-\&gt;c :cs find c &lt;C-R&gt;=expand(<span class="string">"&lt;cword&gt;"</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">nmap &lt;C-\&gt;t :cs find t &lt;C-R&gt;=expand(<span class="string">"&lt;cword&gt;"</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">nmap &lt;C-\&gt;d :cs find d &lt;C-R&gt;=expand(<span class="string">"&lt;cword&gt;"</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">nmap &lt;C-\&gt;e :cs find e &lt;C-R&gt;=expand(<span class="string">"&lt;cword&gt;"</span>)&lt;CR&gt;</span><br><span class="line">nmap &lt;C-\&gt;f :cs find f &lt;C-R&gt;=expand(<span class="string">"&lt;cfile&gt;"</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">nmap &lt;C-\&gt;i :cs find i &lt;C-R&gt;=expand(<span class="string">"&lt;cfile&gt;"</span>)&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">nmap &lt;C-\&gt;z :cs find i &lt;C-R&gt;=expand(<span class="string">"%:t"</span>)&lt;CR&gt;&lt;CR&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="TagList">TagList</h2><hr>
+<h3 id="简介-2">简介</h3><p>VIM插件，用来在Vim的一个垂直或水平的分割窗口中显示一个文件中定义的tags（函数, 类, 结构,变量等）</p>
+<h3 id="官网-2">官网</h3><p><a href="http://www.vim.org/scripts/script.php?script_id=273" target="_blank" rel="external">http://www.vim.org/scripts/script.php?script_id=273</a></p>
+<h3 id="安装-2">安装</h3><p>1）找到系统的vim插件目录和文档目录，如：<code>/usr/share/vim/vim72/plugin和/usr/share/vim/vim72/doc</code></p>
+<p>2）将下载的插件解压，里面的文件分别复制到对应以上两个目录中</p>
+<h3 id="使用-2">使用</h3><p>1）在<code>~/.vimrc</code>文件中添加下面两句：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> Tlist_Show_One_File=<span class="number">1</span></span><br><span class="line"><span class="built_in">let</span> Tlist_Exit_OnlyWindow=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>2）用vim打开一个源代码</p>
+<p>3）运行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:Tlist</span><br></pre></td></tr></table></figure>
+<p>4）按键</p>
+<ul>
+<li>回车：跳到定义</li>
+<li>空格：显示函数完整定义</li>
+</ul>
+<h2 id="WinManager">WinManager</h2><hr>
+<h3 id="简介-3">简介</h3><p>文件浏览器和窗口管理器</p>
+<h3 id="官网-3">官网</h3><p><a href="http://www.vim.org/scripts/script.php?script_id=95" target="_blank" rel="external">http://www.vim.org/scripts/script.php?script_id=95</a></p>
+<h3 id="安装-3">安装</h3><p>同Taglist。</p>
+<h3 id="使用-3">使用</h3><p>1）在<code>~/.vimrc</code>中增加下面两句：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> g:winManagerWindowLayout=<span class="string">'FileExplorer|TagList'</span></span><br><span class="line">nmap wm :WMToggle&lt;cr&gt;</span><br></pre></td></tr></table></figure>
+<p>2）重启vim，在normal模式下输入”<code>wm</code>“，则会调出文件管理器和TagList窗口</p>
+<p>3）再次输入”<code>wm</code>“命令可以关闭以上两个窗口</p>
+<h2 id="MiniBufExplorer">MiniBufExplorer</h2><hr>
+<h3 id="简介-4">简介</h3><p>Vim插件，用来快速浏览和操作缓冲区（buffer）。</p>
+<h3 id="官网-4">官网</h3><p><a href="http://www.vim.org/scripts/script.php?script_id=159" target="_blank" rel="external">http://www.vim.org/scripts/script.php?script_id=159</a></p>
+<h3 id="安装-4">安装</h3><p>同TagList。</p>
+<h3 id="使用-4">使用</h3><p>1） 当你只编辑一个buffer的时候MiniBufExplorer派不上用场, 当你打开第二个buffer的时候, MiniBufExplorer窗口就会自动出来了。</p>
+<p>2） 当你把光标置于这个窗口时, 有下面几个快捷键可以用：</p>
+<ul>
+<li><code>&lt;Tab&gt;</code>      向前循环切换到每个buffer名上</li>
+<li><code>&lt;S-Tab&gt;</code>    向后循环切换到每个buffer名上</li>
+<li><code>&lt;Enter&gt;</code>    在打开光标所在的buffer</li>
+<li><code>d</code>          删除光标所在的buffer</li>
+</ul>
+<p>3） 在<code>~/.vimrc</code>中设置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> g:miniBufExplMapWindowNavVim = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>则可以用<c-h,j,k,l>切换到上下左右的窗口中去。</c-h,j,k,l></p>
+<p>4） 在命令模式下：</p>
+<ul>
+<li><code>:bn</code>            打开当前buffer的下一个buffer</li>
+<li><code>:bp</code>            打开当前buffer的前一个buffer</li>
+<li><code>:b&quot;num&quot;</code>        打开指定的buffer，”num”指的是buffer开始的那个数字</li>
+</ul>
+<h2 id="new-omni-completion(全能补全)">new-omni-completion(全能补全)</h2><hr>
+<h3 id="前提">前提</h3><p>安装了Ctags，并生成索引文件。</p>
+<h3 id="使用-5">使用</h3><p>1）在~/.vimrc文件中增加下面两句:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">filetype plugin indent on 打开文件类型检测</span><br><span class="line"><span class="built_in">set</span> completeopt=longest,menu 关掉智能补全时的预览窗口（需要VIM <span class="number">7</span>以上才支持）</span><br></pre></td></tr></table></figure>
+<p>2）打开代码文件，进入Insert模式, 然后按下”<code>Ctrl+X Ctrl+O</code>“即可</p>
+<p>3）快捷键</p>
+<ul>
+<li><code>Ctrl+P</code>       向前切换成员</li>
+<li><code>Ctrl+N</code>       向后切换成员</li>
+<li><code>Ctrl+E</code>       表示退出下拉窗口, 并退回到原来录入的文字</li>
+<li><code>Ctrl+Y</code>       表示退出下拉窗口, 并接受当前选项</li>
+</ul>
+<h2 id="Vundle">Vundle</h2><hr>
+<h3 id="简介-5">简介</h3><p>VIM插件管理工具，使用git来管理插件，更新方便，支持搜索，一键更新，从此只需要一个vimrc走天下。</p>
+<h3 id="官网-5">官网</h3><p><a href="https://github.com/gmarik/vundle" target="_blank" rel="external">https://github.com/gmarik/vundle</a></p>
+<h2 id="其他常用命令">其他常用命令</h2><hr>
+<p><code>%</code>      跳转到配对的括号去<br><code>[[</code>     跳转到代码块的开头去(但要求代码块中’{‘必须单独占一行)<br><code>gD</code>     跳转到局部变量的定义处<br><code>&#39;&#39;</code>     跳转到光标上次停靠的地方, 是两个<code>&#39;</code>, 而不是一个<code>&quot;</code><br><code>mx</code>     设置书签,x只能是a-z的26个字母<br><code>`x</code>     跳转到书签处(“`“是1左边的键)<br><code>&gt;&gt;</code>     增加缩进,”x&gt;&gt;”表示增加以下x行的缩进<br><code>&lt;&lt;</code>     减少缩进,”x&lt;&lt;”表示减少以下x行的缩进</p>
+<p>参看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">:<span class="built_in">help</span> usr_29</span><br><span class="line">:<span class="built_in">help</span> usr_30</span><br></pre></td></tr></table></figure>
+<h2 id="附录">附录</h2><hr>
+<h3 id="让Ctags支持Javascript">让Ctags支持Javascript</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.ctags</span><br></pre></td></tr></table></figure>
 <p>输入以下内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">--langdef=js</span><br><span class="line">--langmap=js:.js</span><br><span class="line">--regex-js=/(,|(;|^)[ \t]*(var|<span class="built_in">let</span>|([A-Za-z_$][A-Za-z0-<span class="number">9</span>_$.]+\.)*))[ \t]*([A-Za-z0-<span class="number">9</span>_$]+)[ \t]*=[ \t]*\&#123;/\<span class="number">5</span>/,object/</span><br><span class="line">--regex-js=/(,|(;|^)[ \t]*(var|<span class="built_in">let</span>|([A-Za-z_$][A-Za-z0-<span class="number">9</span>_$.]+\.)*))[ \t]*([A-Za-z0-<span class="number">9</span>_$]+)[ \t]*=[ \t]*<span class="keyword">function</span>[ \t]*\(/\<span class="number">5</span>/,<span class="keyword">function</span>/</span><br><span class="line">--regex-js=/(,|(;|^)[ \t]*(var|<span class="built_in">let</span>|([A-Za-z_$][A-Za-z0-<span class="number">9</span>_$.]+\.)*))[ \t]*([A-Za-z0-<span class="number">9</span>_$]+)[ \t]*=[ \t]*\[/\<span class="number">5</span>/,array/</span><br><span class="line">--regex-js=/(,|(;|^)[ \t]*(var|<span class="built_in">let</span>|([A-Za-z_$][A-Za-z0-<span class="number">9</span>_$.]+\.)*))[ \t]*([A-Za-z0-<span class="number">9</span>_$]+)[ \t]*=[ \t]*[^<span class="string">"]'[^']*/\5/,string/</span><br><span class="line">--regex-js=/(,|(;|^)[ \t]*(var|let|([A-Za-z_$][A-Za-z0-9_$.]+\.)*))[ \t]*([A-Za-z0-9_$]+)[ \t]*=[ \t]*(true|false)/\5/,boolean/</span><br><span class="line">--regex-js=/(,|(;|^)[ \t]*(var|let|([A-Za-z_$][A-Za-z0-9_$.]+\.)*))[ \t]*([A-Za-z0-9_$]+)[ \t]*=[ \t]*[0-9]+/\5/,number/</span><br><span class="line">--regex-js=/(,|(;|^)[ \t]*(var|let|([A-Za-z_$][A-Za-z0-9_$.]+\.)*))[ \t]*([A-Za-z0-9_$]+)[ \t]*=[ \t]*.+([,;=]|$)/\5/,variable/</span><br><span class="line">--regex-js=/(,|(;|^)[ \t]*(var|let|([A-Za-z_$][A-Za-z0-9_$.]+\.)*))[ \t]*([A-Za-z0-9_$]+)[ \t]*[ \t]*([,;]|$)/\5/,variable/</span><br><span class="line">--regex-js=/function[ \t]+([A-Za-z0-9_$]+)[ \t]*\([^)]*\)/\1/,function/</span><br><span class="line"> </span><br><span class="line">--regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*\&#123;/\2/,object/</span><br><span class="line">--regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*function[ \t]*\(/\2/,function/</span><br><span class="line">--regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*\[/\2/,array/</span><br><span class="line">--regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*[^"</span>]<span class="string">'[^'</span>]*/\<span class="number">2</span>/,string/</span><br><span class="line">--regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-<span class="number">9</span>_$]+)[ \t]*:[ \t]*(<span class="literal">true</span>|<span class="literal">false</span>)/\<span class="number">2</span>/,boolean/</span><br><span class="line">--regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-<span class="number">9</span>_$]+)[ \t]*:[ \t]*[<span class="number">0</span>-<span class="number">9</span>]+/\<span class="number">2</span>/,number/</span><br><span class="line">--regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-<span class="number">9</span>_$]+)[ \t]*:[ \t]*[^=]+([,;]|$)/\<span class="number">2</span>/,variable/</span><br></pre></td></tr></table></figure>
-<p>参考：<a href="https://gist.github.com/tim-smart/199338" target="_blank" rel="external">https://gist.github.com/tim-smart/199338</a><br>10.2. Cscope生成索引常用选项<br><code>-R</code>: 在生成索引文件时，搜索子目录树中的代码，如果已经在<code>cscope.files</code>中把所有的文件都打印入了列表中，则不需要该选项<br><code>-b</code>: 只生成索引文件，不进入cscope的界面<br><code>-q</code>: 生成<code>cscope.in.out</code>和<code>cscope.po.out</code>文件，加快cscope的索引速度<br><code>-k</code>: 在生成索引文件时，不搜索<code>/usr/include</code>目录<br><code>-i</code>: 如果保存文件列表的文件名不是<code>cscope.files</code>时，需要加此选项告诉cscope到哪儿去找源文件列表。可以使用“-”，表示由标准输入获得文件列表。<br><code>-I dir</code>: 在<code>-I</code>选项指出的目录中查找头文件<br><code>-u</code>: 扫描所有文件，重新生成交叉索引文件<br><code>-C</code>: 在搜索时忽略大小写<br><code>-P path</code>: 在以相对路径表示的文件前加上的path，这样，你不用切换到你数据库文件所在的目录也可以使用它了。</p>
-</li>
-</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">--langdef=js</span><br><span class="line">--langmap=js:.js</span><br><span class="line">--regex-js=/(,|(;|^)[ \t]*(var|<span class="built_in">let</span>|([A-Za-z_$][A-Za-z0-<span class="number">9</span>_$.]+\.)*))[ \t]*([A-Za-z0-<span class="number">9</span>_$]+)[ \t]*=[ \t]*\&#123;/\<span class="number">5</span>/,object/</span><br><span class="line">--regex-js=/(,|(;|^)[ \t]*(var|<span class="built_in">let</span>|([A-Za-z_$][A-Za-z0-<span class="number">9</span>_$.]+\.)*))[ \t]*([A-Za-z0-<span class="number">9</span>_$]+)[ \t]*=[ \t]*<span class="keyword">function</span>[ \t]*\(/\<span class="number">5</span>/,<span class="keyword">function</span>/</span><br><span class="line">--regex-js=/(,|(;|^)[ \t]*(var|<span class="built_in">let</span>|([A-Za-z_$][A-Za-z0-<span class="number">9</span>_$.]+\.)*))[ \t]*([A-Za-z0-<span class="number">9</span>_$]+)[ \t]*=[ \t]*\[/\<span class="number">5</span>/,array/</span><br><span class="line">--regex-js=/(,|(;|^)[ \t]*(var|<span class="built_in">let</span>|([A-Za-z_$][A-Za-z0-<span class="number">9</span>_$.]+\.)*))[ \t]*([A-Za-z0-<span class="number">9</span>_$]+)[ \t]*=[ \t]*[^<span class="string">"]'[^']*/\5/,string/</span><br><span class="line">--regex-js=/(,|(;|^)[ \t]*(var|let|([A-Za-z_$][A-Za-z0-9_$.]+\.)*))[ \t]*([A-Za-z0-9_$]+)[ \t]*=[ \t]*(true|false)/\5/,boolean/</span><br><span class="line">--regex-js=/(,|(;|^)[ \t]*(var|let|([A-Za-z_$][A-Za-z0-9_$.]+\.)*))[ \t]*([A-Za-z0-9_$]+)[ \t]*=[ \t]*[0-9]+/\5/,number/</span><br><span class="line">--regex-js=/(,|(;|^)[ \t]*(var|let|([A-Za-z_$][A-Za-z0-9_$.]+\.)*))[ \t]*([A-Za-z0-9_$]+)[ \t]*=[ \t]*.+([,;=]|$)/\5/,variable/</span><br><span class="line">--regex-js=/(,|(;|^)[ \t]*(var|let|([A-Za-z_$][A-Za-z0-9_$.]+\.)*))[ \t]*([A-Za-z0-9_$]+)[ \t]*[ \t]*([,;]|$)/\5/,variable/</span><br><span class="line">--regex-js=/function[ \t]+([A-Za-z0-9_$]+)[ \t]*\([^)]*\)/\1/,function/</span><br><span class="line">    </span><br><span class="line">--regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*\&#123;/\2/,object/</span><br><span class="line">--regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*function[ \t]*\(/\2/,function/</span><br><span class="line">--regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*\[/\2/,array/</span><br><span class="line">--regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*[^"</span>]<span class="string">'[^'</span>]*/\<span class="number">2</span>/,string/</span><br><span class="line">--regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-<span class="number">9</span>_$]+)[ \t]*:[ \t]*(<span class="literal">true</span>|<span class="literal">false</span>)/\<span class="number">2</span>/,boolean/</span><br><span class="line">--regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-<span class="number">9</span>_$]+)[ \t]*:[ \t]*[<span class="number">0</span>-<span class="number">9</span>]+/\<span class="number">2</span>/,number/</span><br><span class="line">--regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-<span class="number">9</span>_$]+)[ \t]*:[ \t]*[^=]+([,;]|$)/\<span class="number">2</span>/,variable/</span><br></pre></td></tr></table></figure>
+<p>参考：<a href="https://gist.github.com/tim-smart/199338" target="_blank" rel="external">https://gist.github.com/tim-smart/199338</a></p>
+<h3 id="Cscope生成索引常用选项">Cscope生成索引常用选项</h3><p><code>-R</code>: 在生成索引文件时，搜索子目录树中的代码，如果已经在<code>cscope.files</code>中把所有的文件都打印入了列表中，则不需要该选项<br><code>-b</code>: 只生成索引文件，不进入cscope的界面<br><code>-q</code>: 生成<code>cscope.in.out</code>和<code>cscope.po.out</code>文件，加快cscope的索引速度<br><code>-k</code>: 在生成索引文件时，不搜索<code>/usr/include</code>目录<br><code>-i</code>: 如果保存文件列表的文件名不是<code>cscope.files</code>时，需要加此选项告诉cscope到哪儿去找源文件列表。可以使用“-”，表示由标准输入获得文件列表。<br><code>-I dir</code>: 在<code>-I</code>选项指出的目录中查找头文件<br><code>-u</code>: 扫描所有文件，重新生成交叉索引文件<br><code>-C</code>: 在搜索时忽略大小写<br><code>-P path</code>: 在以相对路径表示的文件前加上的path，这样，你不用切换到你数据库文件所在的目录也可以使用它了。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<ol>
-<li><p>写在前面<br> 一般来说，一个完整的IDE至少需要具备以下几个特征：代码加亮、函数定位、文件浏览、导航器、代码补全。所以，VIM本身来说并不是一个合格的IDE，但是对于喜欢它的人，可以通过它强大的插件系统来实现以上全部功能。<br> 另外，VIM作为IDE更有以下这些优势：<br> 1）脱离鼠标，提高效率<br> 2）插件丰富，超强DIY<br> 3）简单轻量，一个vimrc走天下<br> 4）跨平台（Linux/Win/Mac）：VIM，gVIM，MacVIM<br> 5）可以直接在linux开发机上开发<br> 在介绍如何打造IDE之前，首先请先检查系统自带的VIM的版本，请勿&lt;7.0，尽量安装最新版。</p>]]>
+    <![CDATA[<h2 id="写在前面">写在前面</h2><hr>
+<p>一般来说，一个完整的IDE至少需要具备以下几个特征：代码加亮、函数定位、文件浏览、导航器、代码补全。所以，VIM本身来说并不是一个合格的IDE，但是对于喜欢它的人，可以通过它强大的插件系统来实现以上全部功能。</p>
+<p>另外，VIM作为IDE更有以下这些优势：</p>
+<ul>
+<li>脱离鼠标，提高效率</li>
+<li>插件丰富，超强DIY</li>
+<li>简单轻量，一个vimrc走天下</li>
+<li>跨平台（Linux/Win/Mac）：VIM，gVIM，MacVIM</li>
+<li>可以直接在linux开发机上开发</li>
+</ul>
+<p>在介绍如何打造IDE之前，首先请先检查系统自带的VIM的版本，请勿&lt;7.0，尽量安装最新版。</p>]]>
     
     </summary>
     
