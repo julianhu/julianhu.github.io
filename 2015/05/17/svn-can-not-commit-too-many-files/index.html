@@ -18,7 +18,7 @@
 
 
 
-  <meta name="keywords" content="Ghost," />
+  <meta name="keywords" content="SVN," />
 
 
 
@@ -41,7 +41,7 @@
   </script>
 
 
-  <title> Ghost备份后找不到GHO镜像文件 // 隐湖小筑 </title>
+  <title> SVN提交大量文件时不成功的解决方案 // 隐湖小筑 </title>
 </head>
 
 <body>
@@ -135,7 +135,7 @@
           
           
             
-              Ghost备份后找不到GHO镜像文件
+              SVN提交大量文件时不成功的解决方案
             
           
         </h1>
@@ -143,7 +143,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          发表于 2008-02-02
+          发表于 2015-05-17
         </span>
 
         
@@ -163,8 +163,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2008/02/02/ghost-cant-find-gho-file/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2008/02/02/ghost-cant-find-gho-file/"></span>
+            <a href="/2015/05/17/svn-can-not-commit-too-many-files/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/17/svn-can-not-commit-too-many-files/"></span>
             </a>
           </span>
           
@@ -178,21 +178,48 @@
       
 
       
-        <p>Ghost备份后找不到gho镜像文件，但是硬盘空间却无故减少。</p>
-<p>这个问题困扰过我很长一段时间，不知道解决方法，只知道有时把镜像备份到NTFS格式的硬盘上会出现这个问题。</p>
-<p>终于，在网上找到了相关资料：</p>
-<p>用GHOST备份成功后，没有按QUIT就直接ctrl+alt+del退出GHOST，结果重启后完后却找不到GHO。</p>
-<p>问题出现的根本原因：<strong>GHOST在NTFS存在兼容问题</strong>。</p>
-<a id="more"></a>
-<p>具体表现为：</p>
+        <h3 id="环境">环境</h3><hr>
+<p>服务器操作系统：Ubuntu 14.04.1 LTS</p>
+<p>svnserve 版本：1.8.8 (r1568071)</p>
+<h3 id="现象">现象</h3><hr>
 <ol>
-<li>在硬盘格式为NTFS的情况下，不管是8.3或8.2版，备份成功后，如果不按QUIT退出，直接CTRL+ALT+DEL退出，就会出现备份文件丢失的情况，但空间被无故占用。</li>
-<li>在FAT32格式下，备份完后不管怎么退出，都不会存在文件丢失的情况。</li>
+<li><p>先在Ubuntu虚拟机上使用命令行对整个目录进行<code>svn commit</code>操作，但是出现以下提示后就再也没有反应了：</p>
+<blockquote>
+<p>Transmitting file data ………………………..</p>
+</blockquote>
+<p> 重试了多次依然如此。</p>
+</li>
+<li><p>猜想是不是客户端的问题，于是在Windows下使用TortoiseSVN客户端重新进行提交，结果依然不成功，但是返回一个错误信息：</p>
+<blockquote>
+<p>远程主机强迫关闭了一个现有的连接</p>
+</blockquote>
+</li>
+<li><p>对单个目录或文件进行提交没有问题。</p>
+</li>
 </ol>
-<p>建议大家以后在备份时，是NTFS格式的就老老实实的退出。</p>
-<p>最后，运行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkdsk 盘符: /f</span><br></pre></td></tr></table></figure>
-<p>即可把gho文件找回。</p>
+<a id="more"></a>
+<h3 id="排查">排查</h3><hr>
+<ol>
+<li>根据以上现象，基本排除是客户端的问题；</li>
+<li>由于是项目的第一个版本进行初始化，所以文件数量较多。因此可以猜想可能是由于文件数量较多导致SVN服务器主动中断了连接，应该跟SVN服务器配置有关系；</li>
+<li>Google了一番，确定是SVN服务器缓存设置的原因。</li>
+</ol>
+<h3 id="解决">解决</h3><hr>
+<p>由于我是使用svnserve来进行服务，因此以下解决方案可能不适用于使用其他如http服务器的情况，不过解决思路都是类似的。</p>
+<ol>
+<li><p>打开SVN服务器配置文件：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/subversion/config</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将以下参数值设置为较大的数值，默认为16M，太小。</p>
+<p> <code>memory-cache-size = 16</code></p>
+</li>
+<li><p>重启SVN服务器后，重新提交文件，成功。</p>
+</li>
+</ol>
+<h3 id="参考">参考</h3><hr>
+<ol>
+<li><a href="http://www.tyonly.com/archives/734" target="_blank" rel="external">SVN提交大量文件出现：远程主机强迫关闭了一个现有的连接 解决方法</a><br> 如果打不开点击<a href="http://webcache.googleusercontent.com/search?q=cache:6mlXfdIPKwMJ:www.tyonly.com/archives/734+&amp;cd=5&amp;hl=zh-CN&amp;ct=clnk&amp;gl=cn" target="_blank" rel="external">这里</a></li>
+</ol>
 
       
     </div>
@@ -201,7 +228,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Ghost/"> #Ghost </a>
+            <a href="/tags/SVN/"> #SVN </a>
           
         </div>
       
@@ -210,13 +237,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2010/06/26/install-lnmp-on-centos5/">CentOS 5.x下Nginx+PHP+Mysql安装手记</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2007/08/13/mssql-install-error/">SQL Server 2000安装时报错及解决</a>
+              <a href="/2015/05/06/ubuntu-add-apt-repository-command-not-found/">Ubuntu下找不到add-apt-repository命令的解决方案</a>
             
           </div>
         </div>
@@ -232,8 +257,8 @@
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="2008/02/02/ghost-cant-find-gho-file/"
-               data-title="Ghost备份后找不到GHO镜像文件" data-url="http://chunhui.hu/2008/02/02/ghost-cant-find-gho-file/">
+          <div class="ds-thread" data-thread-key="2015/05/17/svn-can-not-commit-too-many-files/"
+               data-title="SVN提交大量文件时不成功的解决方案" data-url="http://chunhui.hu/2015/05/17/svn-can-not-commit-too-many-files/">
           </div>
         
       </div>
@@ -343,7 +368,7 @@
           <div class="post-toc">
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境"><span class="nav-number">1.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现象"><span class="nav-number">2.</span> <span class="nav-text">现象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排查"><span class="nav-number">3.</span> <span class="nav-text">排查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决"><span class="nav-number">4.</span> <span class="nav-text">解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

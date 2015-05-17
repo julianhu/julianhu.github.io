@@ -137,6 +137,105 @@
           
           
             
+              <a class="post-title-link" href="/2010/06/27/modify-time-on-xen-vps/">
+                Xen VPS时间调整
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2010-06-26
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/技术/">技术</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2010/06/27/modify-time-on-xen-vps/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2010/06/27/modify-time-on-xen-vps/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>在Xen技术构建的VPS上按照常规的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date <span class="operator">-s</span></span><br></pre></td></tr></table></figure>
+<p>命令直接修改系统时间是不奏效的，因为xen默认的设置是自动与主机同步时间。当然，我们可以修改该设置。</p>
+<p>打开<code>/etc/sysctl.conf</code>，在最后加上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xen.independent_wallclock=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>然后运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
+<p>使其生效。此时就可以任意修改VPS时间了。但是需要注意的是，重启VPS后时间还是会恢复到与主机相同。</p>
+<p>PS：实际上修改的值在<code>/proc/sys/xen/independent_wallclock</code>文件中。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2010/06/27/modify-time-on-xen-vps/#more">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/"> #Linux </a>
+          
+            <a href="/tags/VPS/"> #VPS </a>
+          
+            <a href="/tags/Xen/"> #Xen </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2010/06/26/install-lnmp-on-centos5/">
                 CentOS 5.x下Nginx+PHP+Mysql安装手记
               </a>
@@ -698,7 +797,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -712,7 +811,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

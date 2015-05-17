@@ -4,7 +4,7 @@
   <subtitle><![CDATA[明朝即长路，惜取此时心。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://chunhui.hu/"/>
-  <updated>2015-05-06T08:33:12.000Z</updated>
+  <updated>2015-05-17T07:16:53.000Z</updated>
   <id>http://chunhui.hu/</id>
   
   <author>
@@ -13,6 +13,84 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[SVN提交大量文件时不成功的解决方案]]></title>
+    <link href="http://chunhui.hu/2015/05/17/svn-can-not-commit-too-many-files/"/>
+    <id>http://chunhui.hu/2015/05/17/svn-can-not-commit-too-many-files/</id>
+    <published>2015-05-17T06:32:13.000Z</published>
+    <updated>2015-05-17T07:16:53.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="环境">环境</h3><hr>
+<p>服务器操作系统：Ubuntu 14.04.1 LTS</p>
+<p>svnserve 版本：1.8.8 (r1568071)</p>
+<h3 id="现象">现象</h3><hr>
+<ol>
+<li><p>先在Ubuntu虚拟机上使用命令行对整个目录进行<code>svn commit</code>操作，但是出现以下提示后就再也没有反应了：</p>
+<blockquote>
+<p>Transmitting file data ………………………..</p>
+</blockquote>
+<p> 重试了多次依然如此。</p>
+</li>
+<li><p>猜想是不是客户端的问题，于是在Windows下使用TortoiseSVN客户端重新进行提交，结果依然不成功，但是返回一个错误信息：</p>
+<blockquote>
+<p>远程主机强迫关闭了一个现有的连接</p>
+</blockquote>
+</li>
+<li><p>对单个目录或文件进行提交没有问题。</p>
+</li>
+</ol>
+<a id="more"></a>
+<h3 id="排查">排查</h3><hr>
+<ol>
+<li>根据以上现象，基本排除是客户端的问题；</li>
+<li>由于是项目的第一个版本进行初始化，所以文件数量较多。因此可以猜想可能是由于文件数量较多导致SVN服务器主动中断了连接，应该跟SVN服务器配置有关系；</li>
+<li>Google了一番，确定是SVN服务器缓存设置的原因。</li>
+</ol>
+<h3 id="解决">解决</h3><hr>
+<p>由于我是使用svnserve来进行服务，因此以下解决方案可能不适用于使用其他如http服务器的情况，不过解决思路都是类似的。</p>
+<ol>
+<li><p>打开SVN服务器配置文件：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/subversion/config</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将以下参数值设置为较大的数值，默认为16M，太小。</p>
+<p> <code>memory-cache-size = 16</code></p>
+</li>
+<li><p>重启SVN服务器后，重新提交文件，成功。</p>
+</li>
+</ol>
+<h3 id="参考">参考</h3><hr>
+<ol>
+<li><a href="http://www.tyonly.com/archives/734" target="_blank" rel="external">SVN提交大量文件出现：远程主机强迫关闭了一个现有的连接 解决方法</a><br> 如果打不开点击<a href="http://webcache.googleusercontent.com/search?q=cache:6mlXfdIPKwMJ:www.tyonly.com/archives/734+&amp;cd=5&amp;hl=zh-CN&amp;ct=clnk&amp;gl=cn" target="_blank" rel="external">这里</a></li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="环境">环境</h3><hr>
+<p>服务器操作系统：Ubuntu 14.04.1 LTS</p>
+<p>svnserve 版本：1.8.8 (r1568071)</p>
+<h3 id="现象">现象</h3><hr>
+<ol>
+<li><p>先在Ubuntu虚拟机上使用命令行对整个目录进行<code>svn commit</code>操作，但是出现以下提示后就再也没有反应了：</p>
+<blockquote>
+<p>Transmitting file data ………………………..</p>
+</blockquote>
+<p> 重试了多次依然如此。</p>
+</li>
+<li><p>猜想是不是客户端的问题，于是在Windows下使用TortoiseSVN客户端重新进行提交，结果依然不成功，但是返回一个错误信息：</p>
+<blockquote>
+<p>远程主机强迫关闭了一个现有的连接</p>
+</blockquote>
+</li>
+<li><p>对单个目录或文件进行提交没有问题。</p>
+</li>
+</ol>]]>
+    
+    </summary>
+    
+      <category term="SVN" scheme="http://chunhui.hu/tags/SVN/"/>
+    
+      <category term="技术" scheme="http://chunhui.hu/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Ubuntu下找不到add-apt-repository命令的解决方案]]></title>
@@ -1447,49 +1525,6 @@
       <category term="VMware" scheme="http://chunhui.hu/tags/VMware/"/>
     
       <category term="disk" scheme="http://chunhui.hu/tags/disk/"/>
-    
-      <category term="技术" scheme="http://chunhui.hu/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Xen VPS时间调整]]></title>
-    <link href="http://chunhui.hu/2010/06/27/modify-time-on-xen-vps/"/>
-    <id>http://chunhui.hu/2010/06/27/modify-time-on-xen-vps/</id>
-    <published>2010-06-26T16:58:04.000Z</published>
-    <updated>2015-05-04T14:11:36.000Z</updated>
-    <content type="html"><![CDATA[<p>在Xen技术构建的VPS上按照常规的</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date <span class="operator">-s</span></span><br></pre></td></tr></table></figure>
-<p>命令直接修改系统时间是不奏效的，因为xen默认的设置是自动与主机同步时间。当然，我们可以修改该设置。</p>
-<p>打开<code>/etc/sysctl.conf</code>，在最后加上</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xen.independent_wallclock=<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>然后运行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
-<p>使其生效。此时就可以任意修改VPS时间了。但是需要注意的是，重启VPS后时间还是会恢复到与主机相同。</p>
-<p>PS：实际上修改的值在<code>/proc/sys/xen/independent_wallclock</code>文件中。</p>
-<a id="more"></a>
-<p>另外，目前国内用户购买的VPS一般都在国外，时区需要调整到中国的东八区。具体方法如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></table></figure>
-<p>覆盖之前建议先备份原来的localtime。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>在Xen技术构建的VPS上按照常规的</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date <span class="operator">-s</span></span><br></pre></td></tr></table></figure>
-<p>命令直接修改系统时间是不奏效的，因为xen默认的设置是自动与主机同步时间。当然，我们可以修改该设置。</p>
-<p>打开<code>/etc/sysctl.conf</code>，在最后加上</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xen.independent_wallclock=<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>然后运行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
-<p>使其生效。此时就可以任意修改VPS时间了。但是需要注意的是，重启VPS后时间还是会恢复到与主机相同。</p>
-<p>PS：实际上修改的值在<code>/proc/sys/xen/independent_wallclock</code>文件中。</p>]]>
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://chunhui.hu/tags/Linux/"/>
-    
-      <category term="VPS" scheme="http://chunhui.hu/tags/VPS/"/>
-    
-      <category term="Xen" scheme="http://chunhui.hu/tags/Xen/"/>
     
       <category term="技术" scheme="http://chunhui.hu/categories/%E6%8A%80%E6%9C%AF/"/>
     

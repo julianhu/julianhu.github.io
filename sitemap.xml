@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://chunhui.hu/2015/05/17/svn-can-not-commit-too-many-files/</loc>
+    <lastmod>2015-05-17T07:16:53.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://chunhui.hu/2015/05/06/ubuntu-add-apt-repository-command-not-found/</loc>
     <lastmod>2015-05-06T08:33:12.000Z</lastmod>
   </url>
